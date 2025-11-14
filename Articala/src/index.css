@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --color-main: #6341af;
+  --color-secondary: #fef3c7;
+  --color-white: #ffffff;
+
+  --space-sm: 15px;
+  --space-md: 30px;
+
+  --radius-md: 14px;
+}
+
+/* text style */
+p {
+  margin: 0;
+}
+
+.headlineMid {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: Medium;
+  font-size: 24px;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+.titleMid {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+.headlineSmall {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: Medium;
+  font-size: 24px;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+/* button style */
+button {
+  background-color: transparent;
+  border: none;
+}
+.transperentBtn {
+  border: solid 1px;
+  border-color: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+}
+.secondaryBtn {
+  background-color: var(--color-secondary);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+}
+
+/* general styleing */
+ul,
+li {
+  all: unset;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+select{
+  all: unset;
+}
+.btn,.btn.show,.btn:hover,.btn:first-child:active{
+  background-color: transparent;
+  border: none;
+}
+.dropdown-toggle::after {
+  content: none;
+}
+.dropDownTitle::before {
+  content: ' ';
+  width: 8px;
+  height: 8px;
+  border: solid 1px ;
+  border-width: 0 1.5px 1.5px 0px;
+  transform: rotate(45deg);
+  border-color: var(--color-white);
+
+}
+
+/* navBar  */
+nav {
+  background-color: var(--color-main);
+  padding: var(--space-md);
+}
+
+/* navBar list */
+.navList {
+  gap: var(--space-md);
+}
