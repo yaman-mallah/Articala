@@ -1,7 +1,7 @@
 
-const NavBarList = () => {
+const NavBarList = ({isVertical}) => {
   return (
-    <ul className="d-flex navList">
+    <ul className={isVertical?"d-flex navList flex-column":"d-flex navList"}>
         <li>
             <a className="headlineMid" href="">
                 Home

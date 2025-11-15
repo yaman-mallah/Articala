@@ -1,0 +1,22 @@
+.heroBox{
+    padding-top: var(--space-xl);
+}
+.mainSlideEnd{
+    margin-bottom: var(--space-md);
+}
+
+.latestArticlesBox{
+    background-color: var(--color-fundation);
+}
+.latestTitleBox{
+    background-color: var(--color-main);
+    width: fit-content;
+    padding-inline-end:var(--space-md) ;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    color: white;
+    padding-block: var(--space-md);
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: -50px;
+}
+

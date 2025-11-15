@@ -1,8 +1,15 @@
 import React from 'react'
+import HeroSection from './home component/HeroSection'
+import CategoriesSection from './home component/CategoriesSection'
+import LatestArticlesSection from './home component/LatestArticlesSection'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <>
+        <HeroSection/>
+        <CategoriesSection/>
+        <LatestArticlesSection/>
+    </>
   )
 }
 

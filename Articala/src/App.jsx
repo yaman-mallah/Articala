@@ -4,7 +4,7 @@ import NavBar from "./generalComponent/NavBar"
 import { Routes, Route } from "react-router";
 import HomePage from './Home/homePage';
 import AboutPage from './About/AboutPage';
-
+import './generalMedia.css'
 
 
 function App() {

@@ -1,9 +1,17 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 
-const MainBtn = ({isFullWidth,text}) => {
+const MainBtn = ({ isFullWidth, text }) => {
   return (
-    Button
+    <button
+      className='mainBtn'
+      style={isFullWidth ? { width: '100%' } : null}
+
+    >
+      <p className='titleMid textWhite'>
+        {text}
+      </p>
+    </button>
   )
 }
 
