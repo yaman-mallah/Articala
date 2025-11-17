@@ -3,8 +3,9 @@ import { Container } from 'react-bootstrap'
 
 const LatestArticlesSection = () => {
     let [containerWidth, setContainerWidth] = useState()
-    let [windowWidth,setWindowWidth]=useState()
+    let [windowWidth, setWindowWidth] = useState()
     let ref = useRef()
+
     useEffect(() => {
         let getwidth = () => {
             setWindowWidth(window.innerWidth)
@@ -12,6 +13,7 @@ const LatestArticlesSection = () => {
                 setContainerWidth(ref.current.offsetWidth)
             // console.log(containerWidth)
         }
+        getwidth()
         window.addEventListener('resize', getwidth)
         return () => window.removeEventListener('resize', getwidth)
     }, [])
@@ -22,29 +24,39 @@ const LatestArticlesSection = () => {
         <>
             <div className="latestArticlesBox position-relative">
                 <div className="latestTitleBox"
-                style={{paddingInlineStart:(windowWidth-containerWidth)/2}}
+                    style={{ paddingInlineStart: (windowWidth - containerWidth) / 2 }}
                 >
                     <h2 className='DisplayMid'>
                         Latest Articles
                     </h2>
                 </div>
                 <Container ref={ref}>
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                 </Container>
+                <div href="" className='titleLargMid textBlack absButtonBox'
+                    style={{ paddingInlineEnd: ((windowWidth - containerWidth) / 2) > 40 ? ((windowWidth - containerWidth) / 2) - 40 : ((windowWidth - containerWidth) / 2) + 20 
+                    ,insetInlineEnd:0
+                    }
+                    }
+
+                >
+                    <a href="" className='secondaryBtn textBlack'>
+
+                        View More
+                    </a>
+                </div>
             </div>
         </>
     )

@@ -10,6 +10,7 @@ const CategoriesSection = () => {
     useEffect(() => {
         blogServices.getCats()
             .then(data => setCats(data))
+            .catch((err)=>console.error(err))
     }, [])
     return (
         <>
@@ -29,7 +30,7 @@ const CategoriesSection = () => {
                     <Row className='justify-content-center'>
                         {
                             cats.map((e, index) => {
-                                console.log(e)
+                                {/* console.log(e) */}
                                 return (
                                     <Col xl={4} lg={6}>
                                         <CategoriesCard title={e.name} index={index} />

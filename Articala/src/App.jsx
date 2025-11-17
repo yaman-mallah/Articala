@@ -5,21 +5,29 @@ import { Routes, Route } from "react-router";
 import HomePage from './Home/homePage';
 import AboutPage from './About/AboutPage';
 import './generalMedia.css'
+import Footer from './generalComponent/Footer';
+import LoginPage from './Login/LoginPage';
+import CreateAnAccountePage from './Login/CreateAnAccountePage';
+import { LoginProvider } from './context/loginContext';
+import Page404 from './page404';
 
 
 function App() {
 
   return (
     <>
-      <header>
-        <NavBar />
-      </header>
+      <LoginProvider>
 
-       <Routes>
-        <Route index element={<HomePage/>} />
-        <Route path='about-us' element={<AboutPage/>} />
+        <Routes>
+          <Route index element={<HomePage />} />
+          <Route path='about-us' element={<AboutPage />} />
+          <Route path='login' element={<LoginPage />} />
+          <Route path='create-an-accounte' element={<CreateAnAccountePage />} />
+          <Route path='*' element={<Page404 />} />
 
-      </Routes>
+        </Routes>
+      </LoginProvider>
+
     </>
   )
 }
