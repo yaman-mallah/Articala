@@ -16,7 +16,7 @@ export const loginService = {
             })
     },
     getImage(userInfo, userId) {
-        let URL = ApiObject.BASE_URL + `/user/${userId}?_format=json`;
+        let URL = ApiObject.BASE_URL + `/user/71?_format=json`;
         const token = btoa(`${userInfo.name}:${userInfo.pass}`);
         return fetch(URL, {
             method: 'GET',

@@ -25,7 +25,7 @@ const NavBar = () => {
 
 
  
-    let { isLogedIn, userInfo,imgLink  } = useContext(LoginContext)
+    let { isLogedIn, userInfo, imgLink  } = useContext(LoginContext)
     // console.log(isLogedIn,userInfo)
     // if (userInfo)
         // loginService.getImage(userInfo)
@@ -63,11 +63,11 @@ const NavBar = () => {
                                     <>
 
                                         <TransperentBtn text={'Sign out'} />
-                                        <div className="d-flex">
-                                            <p>
+                                        <div className="d-flex align-items-center  gap-2">
+                                            <p className='titleLargRegular textWhite'>
                                                 {userInfo.current_user.name}
                                             </p>
-                                            <img src={imgLink} alt="profileImage" />
+                                            <img src={imgLink} alt="profileImage" className='navProfileImage' />
                                         </div>
                                     </>
 

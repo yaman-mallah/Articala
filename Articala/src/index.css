@@ -13,7 +13,7 @@
   --color-white: #ffffff;
   --color-gray700: #4e5566;
   --color-gray500: #8c94a3;
-  --color-gray100:#E9EAF0;
+  --color-gray100: #e9eaf0;
   --color-gray: #d9d9d9;
   --color-green: #e1f7e3;
 
@@ -27,11 +27,14 @@
 }
 
 /* color  */
-.textPurple{
+.textPurple {
   color: var(--color-foundation8b);
 }
 .textGray {
   color: var(--color-gray700);
+}
+.textGray100 {
+  color: var(--color-gray100);
 }
 .textBlack {
   color: var(--color-black);
@@ -86,6 +89,14 @@ h1 {
   line-height: 140%;
   letter-spacing: 0%;
 }
+.titleLargRegular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 22px;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
 .titleMid {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -133,6 +144,13 @@ h1 {
   letter-spacing: 0%;
   text-align: justify;
 }
+.BodyXXXL400 {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0%;
+}
 .DisplayMid {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -140,6 +158,13 @@ h1 {
   font-size: 45px;
   line-height: 140%;
   letter-spacing: 0%;
+}
+.display01 {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 80px;
+  letter-spacing: -2%;
 }
 .labalLarge {
   font-family: "Inter", sans-serif;
@@ -197,7 +222,7 @@ input:focus {
   box-shadow: none !important;
   border: solid 1px var(--color-funcation-main);
 }
-.line{
+.line {
   height: 2px;
   background-color: var(--color-gray100);
 }
@@ -267,6 +292,12 @@ nav {
 .divider {
   height: 4px;
   background-color: var(--color-gray);
+}
+.navProfileImage {
+  height: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  max-width: 62px;
 }
 
 /* categories section */
@@ -345,7 +376,7 @@ nav {
   gap: 6px;
 }
 /* loadding */
-.loadingCircle{
+.loadingCircle {
   height: 50%;
   aspect-ratio: 1/1;
   border: solid;
@@ -357,20 +388,20 @@ nav {
   position: absolute;
 }
 @keyframes spin {
-  from{
+  from {
     transform: rotate(0deg);
   }
-  to{
+  to {
     transform: rotate(360deg);
   }
 }
-.warningMessage{
+.warningMessage {
   border: solid 1px rgb(253, 61, 61);
   background-color: rgb(255, 211, 211);
   color: rgb(253, 61, 61);
   padding: 20px;
   border-radius: 12px;
 }
-.box404{
+.box404 {
   padding-block: 25vh;
 }

@@ -7,9 +7,11 @@ export const LoginProvider = ({ children }) => {
     let [imgLink, setImgLink] = useState(null)
     useEffect(() => {
         let data = localStorage.getItem('userData')
+        let profileImg=localStorage.getItem('profileImg')
         if (data) {
             setUserInfo(JSON.parse(data))
             setIsLoged(true)
+            setImgLink(JSON.parse(profileImg))
         }
         else
             setIsLoged(false)

@@ -38,7 +38,8 @@ const LoginForm = () => {
 
                 loginService.getImage(loginInfo, data.current_user.uid).then((data) => {
                     console.log(data);
-                    setImgLink(data.image_url);
+                    setImgLink(data.user_picture[0].url);
+                    localStorage.setItem('profileImg',JSON.stringify(data.user_picture[0].url))
                 })
                     .catch(() => console.log("something went wrong"));
 
