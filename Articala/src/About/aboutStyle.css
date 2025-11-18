@@ -1,16 +1,86 @@
-.storyBox{
-    padding:  var(--space-xl) 0;
+.storyBox {
+  padding: var(--space-xl) 0;
+}
+.expandingBallBox {
+  position: absolute;
+  inset: 0;
+}
+.expandingBall {
+  background-color: var(--color-funcation-main);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  height: 310px;
+  width: 434px;
+  position: relative;
+  transition: height 0.5s ease-in-out, border-radius 0.3s ease,
+    width 0.5s ease-in-out;
+  overflow: hidden;
+  transform: rotate(-42deg);
+}
+.expandingBall.small {
+  transition: height 0.5s ease-in-out, width 0.5s ease-in-out,
+    border-radius 0.3s ease;
 
+  height: 116px;
+  width: 116px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
 }
-.expandingBall{
-    background-color: var(--color-funcation-main);
-    padding: var(--space-md);
-    border-radius: var(--radius-md);
+.expandingBall a {
+  background-color: var(--color-white);
+  color: black;
+  padding: var(--space-sm);
+  width: 100%;
+  border-radius: var(--radius-md);
 }
-.expandingBall a{
-    background-color: var( --color-white);
-    color: black;   
-    padding: var(--space-sm);
-    width: 100%;
-    border-radius: var(--radius-md);
+.ballLayer {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  background-color: transparent !important;
+}
+.disaper {
+  opacity: 0;
+  position: absolute;
+}
+.aboutUsImg {
+  object-fit: cover;
+}
+.gradiantBox {
+  padding: var(--space-md) 0 0 0;
+  border: solid 40px var(--color-main);
+  border-width: 0 40px 0 0;
+  background: linear-gradient(
+    180deg,
+    rgba(219, 204, 252, 1) 50%,
+    rgba(254, 247, 217, 1) 50%
+  );
+}
+.storyEnd * {
+  text-align: end;
+}
+.storyEnd {
+  padding: 0 0 0 70px;
+}
+.testimonialsTitle{
+    background-color: var( --color-funcation-main);
+    width: fit-content; 
+    color: var(--color-white);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding:  var(--space-sm) 20px  var(--space-sm) 0;
+    
+}
+
+@media screen and (max-width: 1200px) {
+  .gradiantBox {
+    border: none;
+  }
+}
+@media screen and (max-width: 992px) {
+  .storyEnd * {
+    text-align: start;
+  }
+  .storyEnd{
+    padding: 0;
+  }
 }

@@ -2,16 +2,17 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import heroImg from '../../assets/aboutUs/image 4.png'
+import man from '../../assets/aboutUs/men.png'
+import woman from '../../assets/aboutUs/women.png'
 
 
-const TitleLargRegular = () => {
+const AboutUsHero = () => {
     let [paddingStatr, setPaddingStart] = useState(0)
     let currentContainerWidth = useRef()
     useEffect(() => {
         let calculating = () => {
             setPaddingStart((window.innerWidth - currentContainerWidth.current?.offsetWidth) / 2)
-            console.log(paddingStatr)
+            // console.log(paddingStatr)
         }
         calculating()
         window.addEventListener('resize', calculating)
@@ -20,19 +21,19 @@ const TitleLargRegular = () => {
         };
     }, [currentContainerWidth])
     return (
-        <div className='w-100'>
+        <div className='w-100 py-5'>
             <Swiper>
                 <SwiperSlide>
                     <Row>
-                        <Col lg={6}>
+                        <Col lg={6} className='mb-5'>
 
                             <div
-                                className="d-flex flex-column h-100 justify-content-center gap-3"
+                                className="d-flex flex-column h-100 justify-content-center "
                                 style={{ paddingInlineStart: paddingStatr ,paddingInlineEnd:'50px'}}
                             >
                                 <h2 className='display01 textGray100'>2011-2025</h2>
                                 <h1>We share knowledge with the world</h1>
-                                    <div className="line"></div>
+                                
                                 <p className='textGray700 BodyXXXL400'>
                                     Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent fermentum quam mauris. Fusce tempor et augue a aliquet. Donec non ipsum non risus egestas tincidunt at vitae nulla.
                                 </p>
@@ -40,7 +41,12 @@ const TitleLargRegular = () => {
 
                         </Col>
                         <Col>
-                            <img src={heroImg} alt=""  className='w-100 '/>
+                            {/* <img src={heroImg} alt=""  className=' h-100 aboutUsImg'/> */}
+                            <div className="d-flex h-100 align-items-end gradiantBox justify-content-center">
+                                <img className='d-none d-xl-flex' src={man} alt="" />
+                                <img src={woman} alt="" />
+                            </div>
+
                         </Col>
                     </Row>
                 </SwiperSlide>
@@ -51,4 +57,4 @@ const TitleLargRegular = () => {
     )
 }
 
-export default TitleLargRegular
+export default AboutUsHero

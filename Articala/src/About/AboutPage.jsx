@@ -6,6 +6,7 @@ import OurPartners from '../Home/home component/OurPartners'
 import StorySection from './aboutUsComponents/StorySection'
 
 import './aboutStyle.css'
+import TestimonialsSection from './aboutUsComponents/TestimonialsSection'
 
 const AboutPage = () => {
   return (
@@ -18,6 +19,7 @@ const AboutPage = () => {
           <AboutUsHero/>
           <OurPartners/>
           <StorySection/>
+          <TestimonialsSection/>
       </main>
       <footer>
         <Footer/>
