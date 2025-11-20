@@ -5,8 +5,8 @@ export const ApiObject  = {
     CATEGORIES:'/terms/category',
     USERLIST:'/users-list',
     LOGIN:'/user/login?_format=json',
-    USERIMAGE:'user/71?_format=json'
+    USERIMAGE:'user/71?_format=json',
+    TESTIMONIALS:'/testimonials',
    }
-// https://tamkeen-dev.com/api/user/71?_format=json
 }
 

@@ -1,0 +1,11 @@
+.contactHero button {
+  width: fit-content;
+}
+.slide1Box {
+  background-color: var(  --color-funcation-main);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    /* overlay color & opacity */ url("../assets/contactUs/Rectangle 9799.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

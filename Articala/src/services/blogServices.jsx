@@ -15,22 +15,33 @@ export const blogServices = {
     getLatestArticles() {
         let URL = ApiObject.BASE_URL + ApiObject.END_POINTS.CATEGORIES;
     },
-    getUserList(){
-        let URL =ApiObject.BASE_URL+ApiObject.END_POINTS.USERLIST;
-        return fetch(URL,{
-            headers : {
+    getUserList() {
+        let URL = ApiObject.BASE_URL + ApiObject.END_POINTS.USERLIST;
+        return fetch(URL, {
+            headers: {
                 'Content-Type': 'application/json'
             }
         }
         )
-        .then(res=>{
-            if(res.ok){
-                return res.json()
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                }
+                throw new Error(res)
             }
-            throw new Error(res)
-        }
-            
-        )
+
+            )
+    },
+    getTestimoials() {
+        let URL = ApiObject.BASE_URL + ApiObject.END_POINTS.TESTIMONIALS
+        console.log(URL)
+        return fetch(URL)
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                }
+                throw new Error(res)
+            })
     }
 }
 

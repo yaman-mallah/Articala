@@ -10,6 +10,7 @@ import LoginPage from './Login/LoginPage';
 import CreateAnAccountePage from './Login/CreateAnAccountePage';
 import { LoginProvider } from './context/loginContext';
 import Page404 from './page404';
+import ContactUsPage from './contact/ContactUsPage';
 
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
           <Route path='about-us' element={<AboutPage />} />
           <Route path='login' element={<LoginPage />} />
           <Route path='create-an-accounte' element={<CreateAnAccountePage />} />
+          <Route path='contact' element={<ContactUsPage />} />
+
           <Route path='*' element={<Page404 />} />
 
         </Routes>

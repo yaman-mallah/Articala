@@ -62,13 +62,40 @@
 .storyEnd {
   padding: 0 0 0 70px;
 }
-.testimonialsTitle{
-    background-color: var( --color-funcation-main);
-    width: fit-content; 
-    color: var(--color-white);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    padding:  var(--space-sm) 20px  var(--space-sm) 0;
-    
+.testimonialsTitle {
+  background-color: var(--color-funcation-main);
+  width: fit-content;
+  color: var(--color-white);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-sm) 20px var(--space-sm) 0;
+  position: relative;
+  inset-block-end: -40px;
+}
+.testimonialCard {
+  background-color: var(--color-white);
+  border-radius: var(--radius-md);
+  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0 var(--space-sm);
+}
+
+.testimonialCard p {
+  width: fit-content;
+}
+.testimonialsSection {
+  padding: var(--space-xl) 0;
+  background-color: var(--color-fundation);
+  /* max-width: 1850px; */
+}
+.testimonialsSwiper{
+    max-width: 2000px;
+    margin: 0 auto;
+}
+.testimonialCardBottom {
+  background-color: var(--color-funcation-main);
+  color: var(--color-white);
+  padding: var(--space-sm) var(--space-md);
 }
 
 @media screen and (max-width: 1200px) {
@@ -80,7 +107,7 @@
   .storyEnd * {
     text-align: start;
   }
-  .storyEnd{
+  .storyEnd {
     padding: 0;
   }
 }
