@@ -7,6 +7,7 @@ export const ApiObject  = {
     LOGIN:'/user/login?_format=json',
     USERIMAGE:'user/71?_format=json',
     TESTIMONIALS:'/testimonials',
+    CREATEANACCOUNTE:'/user/registerpass?_format=json'
    }
 }
 

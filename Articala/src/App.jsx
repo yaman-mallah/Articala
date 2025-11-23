@@ -11,6 +11,7 @@ import CreateAnAccountePage from './Login/CreateAnAccountePage';
 import { LoginProvider } from './context/loginContext';
 import Page404 from './page404';
 import ContactUsPage from './contact/ContactUsPage';
+import JobsPage from './jobs/JobsPage';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path='login' element={<LoginPage />} />
           <Route path='create-an-accounte' element={<CreateAnAccountePage />} />
           <Route path='contact' element={<ContactUsPage />} />
+          <Route path='jobs' element={<JobsPage />} />
 
           <Route path='*' element={<Page404 />} />
 

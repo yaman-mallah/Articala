@@ -1,0 +1,49 @@
+.joinSectionBox {
+  background-color: var(--color-fundation);
+    
+  overflow: hidden;
+
+  /* background-position:  1000px center; */
+}
+.joinSectionBg {
+   
+  overflow: visible;
+  padding: var(--space-lg) 0;
+
+}
+.joinBg{
+    position: absolute;
+    inset-inline-end: -240px;
+    inset-block-start: 0;
+    height: 100%;
+    width: 50%;
+    min-height: 300px;
+    min-width: 300px;
+    z-index: 0;
+}
+.cardEnd {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border: solid 1px var(--color-main);
+  border-width: 0 0 0 2px;
+}
+.cardStart {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  border: solid 1px var(--color-main);
+  border-width: 0 2px 0 0;
+}
+.joinSwiper {
+  width: 90%;
+}
+.benfitsCard{
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+}
+
+@media  screen and (max-width:1440px) {
+    .joinBg{
+        display: none;
+    }
+    .joinSwiper{
+        width: 100%;
+    }
+}

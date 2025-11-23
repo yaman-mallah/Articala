@@ -1,9 +1,51 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import LogBtn from '../../generalComponent/buttonsComponent/logButton'
+import { loginService } from '../../services/loginService'
+import { data } from 'react-router'
 
 const CreateAccounteForm = () => {
     let [passwordIsVisible, setPasswordIsVisible] = useState(true)
+    let [useInfo, setUserInfo] = useState({
+        fname: '',
+        lname: '',
+        userName: '',
+        email: '',
+        pass: '',
+        phone: '',
+    })
+    let [isCreated, setIsCreated] = useState(false)
+    let [isAcitve, setIsActive] = useState(false)
+    let [password, setPassword] = useState({
+        pass1: '',
+        pass2: ''
+    })
+    let submit = () => {
+        loginService.createAccounte({
+            fName: useInfo.fname,
+            userName: useInfo.userName,
+            LName: useInfo.lname,
+            Email: useInfo.email,
+            Mobile: useInfo.phone,
+            pass: useInfo.pass,
+        })
+            .then((data) => console.log(data))
+            .catch((err) => console.log('this..........' + err))
+    }
+    useEffect(() => {
+        if (useInfo.fname != ''
+            && useInfo.lname != ''
+            && useInfo.userName != ''
+            && useInfo.email != ''
+            && useInfo.phone != ''
+            && useInfo.pass != ''
+        ) {
+            setIsActive(true)
+        }
+    }, useInfo)
+    // useEffect(()=>{
+    //     console.log(useInfo)
+    // },[useInfo])
     return (
         <form action=""
             onSubmit={(e) => {
@@ -16,28 +58,88 @@ const CreateAccounteForm = () => {
                 <label htmlFor="Email">
                     <p>Full Name</p>
                     <div className="d-flex gap-3">
-                        <input type="text" placeholder='first name' />
-                        <input type="text" placeholder='last name' />
+                        <input
+                            type="text"
+                            placeholder='first name'
+                            onInput={(e) => {
+                                setUserInfo({
+                                    ...useInfo,
+                                    fname: e.target.value
+                                })
+                            }}
+                        />
+                        <input
+                            type="text"
+                            placeholder='last name'
+                            onInput={(e) => {
+                                setUserInfo({
+                                    ...useInfo,
+                                    lname: e.target.value
+                                })
+                            }}
+                        />
                     </div>
                 </label>
                 <label htmlFor="Email">
                     <p>mobile</p>
-                    <input type="text" placeholder='ex: 963 000 0000' />
+                    <input
+                        type="text"
+                        placeholder='ex: 963 000 0000'
+                        onInput={(e) => {
+                            setUserInfo({
+                                ...useInfo,
+                                phone: e.target.value
+                            })
+                        }}
+                    />
                 </label>
                 <label htmlFor="Email">
                     <p>username</p>
-                    <input type="text" placeholder='username' />
+                    <input
+                        type="text"
+                        placeholder='username'
+                        onInput={(e) => {
+                            setUserInfo({
+                                ...useInfo,
+                                userName: e.target.value
+                            })
+                        }}
+                    />
                 </label>
                 <label htmlFor="Email">
                     <p>Email</p>
-                    <input type="text" placeholder='username or email address..' />
+                    <input
+                        type="text"
+                        placeholder='username or email address..'
+                        onInput={(e) => {
+                            setUserInfo({
+                                ...useInfo,
+                                email: e.target.value
+                            })
+                        }}
+                    />
+                </label>
+                <label htmlFor="image">
+                    <input
+                        type="file"
+                    // onChange={ }
+                    />
                 </label>
                 <label htmlFor="password">
                     <p>Password</p>
                     <div className="d-flex gap-2">
 
                         <div className="d-flex inputPasswordBox">
-                            <input type={passwordIsVisible ? 'text' : 'password'} placeholder='password' />
+                            <input
+                                type={passwordIsVisible ? 'text' : 'password'}
+                                placeholder='password'
+                                onInput={(e) => {
+                                    setPassword({
+                                        ...password,
+                                        pass1: e.target.value
+                                    })
+                                }}
+                            />
                             <button
                                 onClick={() => {
                                     setPasswordIsVisible(e => e = !e)
@@ -56,7 +158,16 @@ const CreateAccounteForm = () => {
                             </button>
                         </div>
                         <div className="d-flex inputPasswordBox">
-                            <input type={passwordIsVisible ? 'text' : 'password'} placeholder='password' />
+                            <input
+                                type={passwordIsVisible ? 'text' : 'password'}
+                                placeholder='password'
+                                onInput={(e) => {
+                                    setPassword({
+                                        ...password,
+                                        pass2: e.target.value
+                                    })
+                                }}
+                            />
                             <button
                                 onClick={() => {
                                     setPasswordIsVisible(e => e = !e)
@@ -85,7 +196,7 @@ const CreateAccounteForm = () => {
                         <span className="checkboxCustom"></span>
                         <p className='textGray500'>I Agree with all of your <a href="" className='textPurple'>Terms & Conditions </a></p>
                     </label>
-                    <LogBtn text={'Create account'} arrow={1} />
+                    <LogBtn text={'Create account'} arrow={1} onClick={submit} />
                 </div>
 
             </div>

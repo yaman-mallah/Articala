@@ -9,7 +9,7 @@ import job1 from '../../assets/home/job/fc83eff6ccb6c834e2fe3dcb2a6175a92092ce8f
 import job2 from '../../assets/home/job/Course Images.png'
 import job3 from '../../assets/home/job/Course Images-1.png'
 
-const JobOpprtunitiesSection = () => {
+const JobOpprtunitiesSection = ({NoMore}) => {
   let [containerWidth, setContainerWidth] = useState()
   let [windowWidth, setWindowWidth] = useState()
   let ref = useRef()
@@ -109,11 +109,13 @@ const JobOpprtunitiesSection = () => {
            insetInlineStart:0
            }}
 
-        >
+        >{
+          !NoMore&&
           <a href="" className='secondaryBtn textBlack'>
 
             View More
           </a>
+        }
         </div>
       </div>
     </>

@@ -3,6 +3,8 @@ import NavBar from '../generalComponent/NavBar'
 import Footer from '../generalComponent/Footer'
 import ContactHero from './contactUsComponents/ContactHero'
 import './contactStyle.css'
+import BranchesSection from './contactUsComponents/branchesSection'
+import ContactUsSection from './contactUsComponents/ContactUsSection'
 const ContactUsPage = () => {
   return (
     <>
@@ -11,6 +13,8 @@ const ContactUsPage = () => {
         </header>
         <main>
             <ContactHero/>
+            <BranchesSection/>
+            <ContactUsSection/>
         </main>
         <footer>
             <Footer/>

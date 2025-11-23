@@ -3,6 +3,7 @@
 :root {
   --color-main: #6341af;
   --color-black: #242424;
+  --color-violate: #4c3387;
   --color-foundation8b: #8b5cf6;
 
   --color-transparent: #363b4766;
@@ -17,6 +18,7 @@
   --color-gray: #d9d9d9;
   --color-green: #e1f7e3;
 
+  --space-xsm:10px;
   --space-sm: 15px;
   --space-md: 30px;
   --space-lg: 60px;
@@ -63,6 +65,15 @@ h5 {
   font-size: 40px;
   line-height: 48px;
   letter-spacing: -1%;
+ 
+}
+.HeadlineBold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  /* font-style: m; */
+  font-size: 32px;
+  line-height: 140%;
+  letter-spacing: 0%;
   text-align: center;
 }
 h1 {
@@ -111,7 +122,6 @@ h1 {
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0%;
-
 }
 .titleLargMid {
   font-family: "Roboto", sans-serif;
@@ -200,9 +210,12 @@ h1 {
   letter-spacing: 0%;
   text-align: center;
 }
+.textMid{
+  text-align: center;
+}
 /* button style */
-.w-fit{
-    width: fit-content;
+.w-fit {
+  width: fit-content;
 }
 button {
   background-color: transparent;
@@ -271,6 +284,11 @@ select {
 input {
   border: none;
 }
+textarea{
+  border: solid 1px var(--color-gray100);
+  padding: var(--space-xsm);
+  min-height: 150px;
+}
 /* .dropDownTitle::before {
   content: " ";
   width: 8px;
@@ -280,6 +298,7 @@ input {
   transform: rotate(45deg);
   border-color: var(--color-white);
 } */
+
 
 /* navBar  */
 nav {
@@ -424,4 +443,44 @@ nav {
 }
 .box404 {
   padding-block: 25vh;
+}
+.BranchCard {
+  /* max-width: 300; */
+  min-width: 300px;
+}
+.BranchTextBox {
+  background-color: color-mix(
+    in srgb,
+    var(--color-violate) 40%,
+    var(--color-violate) 20%
+  );
+  position: absolute;
+  inset-inline: 0;
+  color: white;
+  inset-block-end: 0;
+  border-radius: var(--radius-md) var(--radius-md);
+}
+.placeBox {
+  position: absolute;
+  inset-inline-start: 0;
+  padding-inline-start: 30px;
+  padding-inline-end: 30px;
+  padding-block: 12px;
+  inset-block-start: 30px;
+  background-color: var(--color-funcation-main);
+  color: var(--color-white);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+/* double arrow link (job) */
+.doubleArrowLink{
+  color: var(--color-black);
+  max-width: 320px;
+  padding: var(--space-sm);
+  border: solid 1px var(--color-gray500);
+  border-radius: var(--radius-md);
+}
+.joinCardBox{
+  padding: var(--space-md);
+  background-color: var(--color-white);
+  /* aspect-ratio: 40/19; */
 }
