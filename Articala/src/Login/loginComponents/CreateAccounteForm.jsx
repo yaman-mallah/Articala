@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Form } from 'react-bootstrap'
 import LogBtn from '../../generalComponent/buttonsComponent/logButton'
 import { loginService } from '../../services/loginService'
-import { data } from 'react-router'
+import { useNavigate } from "react-router";
 
 const CreateAccounteForm = () => {
     let [passwordIsVisible, setPasswordIsVisible] = useState(true)
@@ -16,11 +15,14 @@ const CreateAccounteForm = () => {
     })
     let [isCreated, setIsCreated] = useState(false)
     let [isAcitve, setIsActive] = useState(false)
+    let [isLoading, setIsLoading] = useState(false)
     let [password, setPassword] = useState({
         pass1: '',
         pass2: ''
     })
     let submit = () => {
+        setIsLoading(true)
+        setIsActive(false)
         loginService.createAccounte({
             fName: useInfo.fname,
             userName: useInfo.userName,
@@ -29,9 +31,26 @@ const CreateAccounteForm = () => {
             Mobile: useInfo.phone,
             pass: useInfo.pass,
         })
-            .then((data) => console.log(data))
+            .then((data) => {
+                setIsLoading(true)
+                console.log(data)
+                if (data.field_surname) {
+                    setIsCreated(true)
+                }
+            })
             .catch((err) => console.log('this..........' + err))
+            .finally(() => setIsLoading(false))
     }
+
+
+    useEffect(() => {
+        if (password.pass1 == password.pass2 || password.pass1 != '')
+            setUserInfo({
+                ...useInfo,
+                pass: password.pass1
+            })
+        console.log(password)
+    }, [])
     useEffect(() => {
         if (useInfo.fname != ''
             && useInfo.lname != ''
@@ -41,11 +60,17 @@ const CreateAccounteForm = () => {
             && useInfo.pass != ''
         ) {
             setIsActive(true)
+            console.log(setIsActive)
         }
-    }, useInfo)
-    // useEffect(()=>{
-    //     console.log(useInfo)
-    // },[useInfo])
+    }, [useInfo])
+    let navigate = useNavigate();
+    useEffect(() =>{
+    
+    if (isCreated) {
+        navigate("/");
+    }}
+    , [isCreated])
+
     return (
         <form action=""
             onSubmit={(e) => {
@@ -55,7 +80,7 @@ const CreateAccounteForm = () => {
         >
             <h1 className='heading02'>Create your account</h1>
             <div className="d-flex flex-column BodyMedium400 gap-3">
-                <label htmlFor="Email">
+                <label htmlFor="name">
                     <p>Full Name</p>
                     <div className="d-flex gap-3">
                         <input
@@ -80,10 +105,10 @@ const CreateAccounteForm = () => {
                         />
                     </div>
                 </label>
-                <label htmlFor="Email">
+                <label htmlFor="last name">
                     <p>mobile</p>
                     <input
-                        type="text"
+                        type="number"
                         placeholder='ex: 963 000 0000'
                         onInput={(e) => {
                             setUserInfo({
@@ -93,7 +118,7 @@ const CreateAccounteForm = () => {
                         }}
                     />
                 </label>
-                <label htmlFor="Email">
+                <label htmlFor="user name">
                     <p>username</p>
                     <input
                         type="text"
@@ -109,7 +134,7 @@ const CreateAccounteForm = () => {
                 <label htmlFor="Email">
                     <p>Email</p>
                     <input
-                        type="text"
+                        type="email"
                         placeholder='username or email address..'
                         onInput={(e) => {
                             setUserInfo({
@@ -138,6 +163,18 @@ const CreateAccounteForm = () => {
                                         ...password,
                                         pass1: e.target.value
                                     })
+                                    if (e.target.value == password.pass2) {
+                                        setUserInfo({
+                                            ...useInfo,
+                                            pass: e.target.value
+                                        })
+                                    } else {
+                                        setUserInfo({
+                                            ...useInfo,
+                                            pass: ''
+                                        })
+                                    }
+
                                 }}
                             />
                             <button
@@ -166,6 +203,17 @@ const CreateAccounteForm = () => {
                                         ...password,
                                         pass2: e.target.value
                                     })
+                                    if (e.target.value == password.pass1) {
+                                        setUserInfo({
+                                            ...useInfo,
+                                            pass: e.target.value
+                                        })
+                                    } else {
+                                        setUserInfo({
+                                            ...useInfo,
+                                            pass: ''
+                                        })
+                                    }
                                 }}
                             />
                             <button
@@ -186,17 +234,20 @@ const CreateAccounteForm = () => {
                             </button>
                         </div>
                     </div>
+
+                    <p className={password.pass1 == password.pass2 ? 'p-2 opacity-0' : 'p-2 opacity-1 textRed'}>
+                        the password is mis matched
+                    </p>
                 </label>
                 <div className="line w-100">
                 </div>
                 <div className="d-flex justify-content-between">
-
                     <label htmlFor="Email" className='d-flex flex-row align-items-center gap-2 position-relative'>
                         <input className='checkboxInput' type="checkbox" placeholder='username or email address..' />
                         <span className="checkboxCustom"></span>
                         <p className='textGray500'>I Agree with all of your <a href="" className='textPurple'>Terms & Conditions </a></p>
                     </label>
-                    <LogBtn text={'Create account'} arrow={1} onClick={submit} />
+                    <LogBtn text={'Create account'} arrow={1} onClick={submit} disabled={!isAcitve} isLoading={isLoading} />
                 </div>
 
             </div>

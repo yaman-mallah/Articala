@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { act } from 'react'
 import { Button } from 'react-bootstrap'
 
-const LogBtn = ({ text, arrow, isLoading, onClick }) => {
+const LogBtn = ({ text, arrow, isLoading, onClick ,disabled }) => {
+    // console.log(isLoading)
+    // console.log(disabled)
 
     return (
         <button
             type="submit"
             className='logBtn d-flex align-items-center justify-content-center position-relative'
-            disabled={isLoading}
+            disabled={disabled&&'disabled'}
+                style={disabled ? { opacity: 0.6 } : { opacity: 1 }}
             onClick={()=>onClick()}
         >
             <div

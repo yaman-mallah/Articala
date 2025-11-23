@@ -50,6 +50,9 @@
 .textWhite {
   color: var(--color-white);
 }
+.textRed{
+  color: rgb(222, 93, 93);
+}
 
 /* text style */
 p,
