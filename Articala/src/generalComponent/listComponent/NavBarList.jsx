@@ -1,31 +1,32 @@
+import { Link } from "react-router"
 
 const NavBarList = ({isVertical}) => {
   return (
     <ul className={isVertical?"d-flex navList flex-column":"d-flex navList"}>
         <li>
-            <a className="headlineMid" href="">
+            <Link to={'/'} className="headlineMid" href="">
                 Home
-            </a>
+            </Link>
+        </li>
+        <li>
+            <Link to={'/jobs'} className="headlineMid" href="">
+                jobs
+            </Link>
         </li>
         <li>
             <a className="headlineMid" href="">
-                Articles
+                FAQs
             </a>
         </li>
         <li>
-            <a className="headlineMid" href="">
-                Vacancies
-            </a>
-        </li>
-        <li>
-            <a className="headlineMid" href="">
+            <Link to={'/about-us'} className="headlineMid" href="">
                 About Us
-            </a>
+            </Link>
         </li>
         <li>
-            <a className="headlineMid" href="">
+            <Link to={'/contact'} className="headlineMid" href="">
                 Contact
-            </a>
+            </Link>
         </li>
     </ul>
   )

@@ -17,7 +17,7 @@ const CreateAnAccountePage = () => {
                     <Container>
                         <Row>
                             <Col lg={6}>
-                                <div className="loginImgBox">
+                                <div className="loginImgBox ">
                                     <img src={mainImg} alt="" />
                                 </div>
                             </Col>

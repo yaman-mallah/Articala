@@ -6,7 +6,7 @@
   color: var(--color-white);
 }
 .loginImgBox {
-  min-height: 100vh;
+  min-height: calc(100vh - 112px);
   display: flex;
   justify-content: center;
   align-items: center;

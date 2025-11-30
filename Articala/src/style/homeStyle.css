@@ -1,5 +1,8 @@
 .heroBox {
   padding-top: var(--space-xl);
+  min-height: calc(100vh - 112px);
+  display: flex;
+  align-items: center;
 }
 .mainSlideEnd {
   margin-bottom: var(--space-md);
@@ -7,6 +10,7 @@
 
 .latestArticlesBox {
   background-color: var(--color-fundation);
+  padding: var(--space-xl) 0;
 }
 .latestTitleBox {
   background-color: var(--color-funcation-main);
@@ -55,7 +59,21 @@
   inset-inline-end: 0;
   inset-block-start: -50px;
 }
-
+.latestArtCard{
+  background-color: var(--color-white);
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+}
+.latestArtCard img{
+  border-radius: var(--radius-md);
+}
+.majorBox{
+  background-color: var( --color-light);
+  border-radius: var(--radius-lg);
+  width: fit-content;
+  padding: 10px var(--space-md) ;
+  color: var(--color-funcation-main);
+}
 
 
 

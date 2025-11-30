@@ -9,11 +9,11 @@ import { Navigate } from 'react-router'
 import { LoginContext } from '../context/loginContext'
 const LoginPage = () => {
 
-    const {  isLogedIn } = useContext(LoginContext)
+    const { isLogedIn } = useContext(LoginContext)
 
 
     if (isLogedIn) {
-        return <Navigate to="/"  replace/>;
+        return <Navigate to="/" replace />;
     }
 
 
@@ -23,24 +23,27 @@ const LoginPage = () => {
                 <header>
                     <LoginNavBar />
                 </header>
-                <div className="loginBox">
+                <main>
 
-                    <Container>
-                        <Row>
-                            <Col lg={6}>
-                                <div className="loginImgBox">
-                                    <img src={mainImg} alt="" />
-                                </div>
-                            </Col>
-                            <Col lg={6}>
-                                <div className="d-flex align-items-center h-100">
+                    <div className="loginBox">
 
-                                    <LoginForm />
-                                </div>
-                            </Col>
-                        </Row>
-                    </Container>
-                </div>
+                        <Container>
+                            <Row>
+                                <Col lg={6}>
+                                    <div className="loginImgBox">
+                                        <img src={mainImg} alt="" />
+                                    </div>
+                                </Col>
+                                <Col lg={6}>
+                                    <div className="d-flex align-items-center h-100">
+
+                                        <LoginForm />
+                                    </div>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </div>
+                </main>
             </>
         )
 }

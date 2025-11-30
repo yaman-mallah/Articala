@@ -7,7 +7,7 @@ import { loginService } from '../../services/loginService'
 import { useNavigate } from "react-router";
 import { LoginContext } from '../../context/loginContext';
 const LoginForm = () => {
-    const { setUserInfo, isLogedIn, userInfo, setImgLink } = useContext(LoginContext)
+    const { setUserInfo, setIsLoged, userInfo, setImgLink } = useContext(LoginContext)
 
 
     let [passwordIsVisible, setPasswordIsVisible] = useState(false)
@@ -36,14 +36,18 @@ const LoginForm = () => {
                 setUserInfo(userData)
                 console.log(data.current_user.uid)
 
-                loginService.getImage(loginInfo, data.current_user.uid).then((data) => {
-                    console.log(data);
-                    setImgLink(data.user_picture[0].url);
-                    localStorage.setItem('profileImg',JSON.stringify(data.user_picture[0].url))
-                })
+                loginService.getUserInfo(loginInfo, data.current_user.uid)
+                    .then((data) => {
+                        console.log(data);
+                        setImgLink(data.user_picture[0].url);
+                        setIsLoged(true)
+                        console.log('is Setting')
+                        
+                        localStorage.setItem('profileImg',data.user_picture[0].url? JSON.stringify(data.user_picture[0].url):'../../assets/gerall/blank-profile-picture-973460_1280.webp')
+                        localStorage.setItem('profileInfo', JSON.stringify(data))
+                    })
                     .catch(() => console.log("something went wrong"));
-
-                navigate("/")
+               
             })
             .catch((err) => {
                 // console.log(err)
@@ -51,6 +55,7 @@ const LoginForm = () => {
                 setErrorMessage('the password or the user name is wrong')
                 setIsSubmited(false)
             })
+            .finally(()=> navigate("/"))
 
     }
 

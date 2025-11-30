@@ -14,12 +14,15 @@ const HomePage = () => {
             <header>
                 <NavBar />
             </header>
-            <HeroSection />
-            <CategoriesSection />
-            <LatestArticlesSection />
-            <TopWritersSection />
-            <JobOpprtunitiesSection />
-            <OurPartners />
+            <main>
+
+                <HeroSection />
+                <CategoriesSection />
+                <LatestArticlesSection />
+                <TopWritersSection />
+                <JobOpprtunitiesSection />
+                <OurPartners />
+            </main>
             <footer>
                 <Footer />
             </footer>

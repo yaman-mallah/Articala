@@ -15,8 +15,8 @@ export const loginService = {
                 throw new Error(res.message);
             })
     },
-    getImage(userInfo, userId) {
-        let URL = ApiObject.BASE_URL + `/user/71?_format=json`;
+    getUserInfo(userInfo, userId) {
+        let URL = ApiObject.BASE_URL + `/user/${userId}?_format=json`;
         const token = btoa(`${userInfo.name}:${userInfo.pass}`);
         return fetch(URL, {
             method: 'GET',
@@ -71,6 +71,80 @@ export const loginService = {
             if (res.ok) return res.json();
             throw new Error(res.message);
         })
+    },
+    getArticalesInfo(userInfo) {
+        let URL = ApiObject.BASE_URL + ApiObject.END_POINTS.ARTICALSINFO
+        const token = btoa(`${userInfo.name}:${userInfo.pass}`);
+        return fetch(URL, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Basic ${token}`,
+                "Content-Type": "application/json"
+            }
+        })
+            .then(res => {
+                if (res.ok) return res.json();
+                throw new Error(res.message);
+            })
+
+    },
+    //not in use yet.....
+    sendProfileImg(cstoken, pass, name, file) {
+        let URL = ApiObject.BASE_URL + ApiObject.END_POINTS.IMGUPLOAD
+        const token = btoa(`${name}:${pass}`);
+
+        console.log(file)
+        return fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Basic ${token}`,
+                "Content-Type": "application/octet-stream",
+                "X-CSRF-Token": cstoken,
+                "Content-Disposition": 'file; filename="newFile.png"'
+            },
+            body: file
+        }).then(res => {
+
+            if (res.ok) return res.json();
+            throw new Error("Error in response");
+        });
+    },
+    UpdateProfile(pass, name, userId, tokencrf, FName, LName, img) {
+        let URL = ApiObject.BASE_URL + `/user/${userId}?_format=json`
+        const token = btoa(`${name}:${pass}`);
+
+        return fetch(URL, {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Basic ${token}`,
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "X-CSRF-Token": tokencrf
+            },
+            body: JSON.stringify({
+                "field_name": [
+                    {
+                        "value": FName
+                    }
+                ],
+                "field_surname": [
+                    {
+                        "value": LName
+                    }
+                ],
+                // "user_picture": [
+                //     {
+                //         "target_id": img
+                //     }
+                // ]
+
+            })
+        })
+            .then(res => {
+
+                if (res.ok) return res.json();
+                throw new Error("Error in response");
+            });
     }
 }
 

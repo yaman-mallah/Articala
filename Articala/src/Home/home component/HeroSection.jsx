@@ -20,15 +20,16 @@ const HeroSection = () => {
                 <div className="w-100 heroBox">
 
                     <Swiper
-
+                        spaceBetween={30}
 
                     >
                         <SwiperSlide>
                             <MainSlide />
                         </SwiperSlide>
                         <SwiperSlide>
-                            <SecondSlide/>
+                            <MainSlide />
                         </SwiperSlide>
+                       
 
      
                     </Swiper>

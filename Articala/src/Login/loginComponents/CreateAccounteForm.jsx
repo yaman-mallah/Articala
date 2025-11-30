@@ -37,8 +37,9 @@ const CreateAccounteForm = () => {
                 if (data.field_surname) {
                     setIsCreated(true)
                 }
+                // loginService.
             })
-            .catch((err) => console.log('this..........' + err))
+            .catch((err) => console.log(err))
             .finally(() => setIsLoading(false))
     }
 
@@ -64,12 +65,39 @@ const CreateAccounteForm = () => {
         }
     }, [useInfo])
     let navigate = useNavigate();
-    useEffect(() =>{
-    
-    if (isCreated) {
-        navigate("/");
-    }}
-    , [isCreated])
+    useEffect(() => {
+
+        if (isCreated) {
+            navigate("/");
+        }
+    }, [isCreated])
+
+
+
+    const handleImage = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            // base64 string result
+            const base64String = reader.result;
+
+            // save to userInfo
+            setUserInfo({
+                ...useInfo,
+                image: base64String
+            });
+
+            console.log("Base64 image:", base64String);
+        };
+
+        reader.readAsDataURL(file); // convert to base64
+    };
+
+    if(localStorage.getItem('userData'))
+        navigate('/')
 
     return (
         <form action=""
@@ -144,11 +172,31 @@ const CreateAccounteForm = () => {
                         }}
                     />
                 </label>
-                <label htmlFor="image">
+                <label htmlFor="image" className='w-100 position-relative'>
                     <input
                         type="file"
-                    // onChange={ }
+                        accept="image/*"
+                        onChange={(e) => handleImage(e)}
+                        className='imgInput'
+
                     />
+                    <div className="d-flex gap-3 py-3 w-100">
+                        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100" height="100" rx="5" fill="#E2E6EC" />
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M28.666 37.0003C28.666 34.6071 30.6061 32.667 32.9993 32.667H66.9993C69.3926 32.667 71.3327 34.6071 71.3327 37.0003V63.667C71.3327 66.0602 69.3926 68.0003 66.9993 68.0003H32.9993C30.6061 68.0003 28.666 66.0602 28.666 63.667V37.0003ZM32.9993 34.667C31.7107 34.667 30.666 35.7117 30.666 37.0003V63.667C30.666 64.9557 31.7107 66.0003 32.9993 66.0003H66.9993C68.288 66.0003 69.3327 64.9557 69.3327 63.667V37.0003C69.3327 35.7117 68.288 34.667 66.9993 34.667H32.9993Z" fill="#B2B9C4" />
+                            <circle cx="38.6654" cy="42.0003" r="4.33333" fill="#B2B9C4" />
+                            <path d="M34.332 60.334V58.3577C34.332 57.9156 34.5076 57.4917 34.8202 57.1792L40.2083 51.791C40.8374 51.162 41.8496 51.1379 42.5079 51.7363L43.8393 52.9466C44.4908 53.539 45.4908 53.5222 46.1222 52.9084L55.8204 43.4795C56.4738 42.8443 57.5163 42.8516 58.1607 43.496L65.8439 51.1792C66.1564 51.4917 66.332 51.9156 66.332 52.3577V60.334C66.332 61.2545 65.5858 62.0007 64.6654 62.0007H35.9987C35.0782 62.0007 34.332 61.2545 34.332 60.334Z" fill="#B2B9C4" />
+                        </svg>
+                        <div className="d-flex flex-column gap-2 w-100">
+                            <p>Please upload square image, size less than 800 kb</p>
+                            <div className="imgInputbox p-3 d-flex gap-3 align-items-center">
+                                <button className='fileUpload'>
+                                    choose file
+                                </button>
+                                <p>No File Chosen</p>
+                            </div>
+                        </div>
+                    </div>
                 </label>
                 <label htmlFor="password">
                     <p>Password</p>
@@ -242,7 +290,7 @@ const CreateAccounteForm = () => {
                 <div className="line w-100">
                 </div>
                 <div className="d-flex justify-content-between">
-                    <label htmlFor="Email" className='d-flex flex-row align-items-center gap-2 position-relative'>
+                    <label htmlFor="" className='d-flex flex-row align-items-center gap-2 position-relative'>
                         <input className='checkboxInput' type="checkbox" placeholder='username or email address..' />
                         <span className="checkboxCustom"></span>
                         <p className='textGray500'>I Agree with all of your <a href="" className='textPurple'>Terms & Conditions </a></p>

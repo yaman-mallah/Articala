@@ -1,0 +1,31 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "image": "../../src/JsonApi/imgs/Rectangle 9786-1.png",
+      "author": "Mohammad alhaj",
+      "authorTagColor": "lavender",
+      "courseTitle": "2021 Complete Python Bootcamp From Zero to Hero...",
+      "rating": 4.7,
+      "articles": 13
+    },
+    {
+      "id": 2,
+      "image": "../../src/JsonApi/imgs/Rectangle 9787.png",
+      "author": "Mohammad alhaj",
+      "authorTagColor": "beige",
+      "courseTitle": "2021 Complete Python Bootcamp From Zero to Hero...",
+      "rating": 4.7,
+      "articles": 13
+    },
+    {
+      "id": 3,
+      "image": "../../src/JsonApi/imgs/Rectangle 9786.png",
+      "author": "Mohammad alhaj",
+      "authorTagColor": "lavender",
+      "courseTitle": "2021 Complete Python Bootcamp From Zero to Hero...",
+      "rating": 4.7,
+      "articles": 13
+    }
+  ]
+}

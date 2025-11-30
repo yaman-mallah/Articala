@@ -6,6 +6,8 @@ import TransperentBtn from '../../generalComponent/buttonsComponent/TransperentB
 const LoginNavBar = () => {
     return (
         <>
+
+
             <div className="loginHeaderBox">
 
                 <Container>
@@ -18,11 +20,12 @@ const LoginNavBar = () => {
                             <a href="">
                                 Already have an account ?
                             </a>
-                            <TransperentBtn text={'Sing In'}/>
+                            <TransperentBtn herf={'/login'} text={'Sing In'} />
                         </div>
                     </div>
                 </Container>
             </div>
+
         </>
     )
 }

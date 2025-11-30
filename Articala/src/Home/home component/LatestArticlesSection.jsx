@@ -1,5 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Container } from 'react-bootstrap'
+import LatestArticles from '../../JsonApi/latestArticles.json'
+import { LoginContext } from '../../context/loginContext'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import LatestArticlesCard from './latestArticlesCard'
 
 const LatestArticlesSection = () => {
     let [containerWidth, setContainerWidth] = useState()
@@ -20,6 +24,10 @@ const LatestArticlesSection = () => {
     // useEffect(() => {
     //     console.log("Container width:", containerWidth);
     // }, [containerWidth]);
+
+    // let {}
+
+
     return (
         <>
             <div className="latestArticlesBox position-relative">
@@ -31,23 +39,36 @@ const LatestArticlesSection = () => {
                     </h2>
                 </div>
                 <Container ref={ref}>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                    <div className="w-100 ">
+
+                        <Swiper
+                        spaceBetween={30}
+                        breakpoints={{
+                            0:{
+                                slidesPerView:1
+                            },
+                            992:{
+                                slidesPerView:3
+                            },
+                            1200:{
+                                slidesPerView:3
+                            }
+                        }}
+                        >
+                            {
+                                LatestArticles.cards.map((e) => (
+                                    <SwiperSlide>
+                                        <LatestArticlesCard title={e.courseTitle } cat={e.category} author={e.author} img={e.image}/>
+                                    </SwiperSlide>
+                                ))
+                            }
+                        </Swiper>
+                    </div>
                 </Container>
                 <div href="" className='titleLargMid textBlack absButtonBox'
-                    style={{ paddingInlineEnd: ((windowWidth - containerWidth) / 2) > 40 ? ((windowWidth - containerWidth) / 2) - 40 : ((windowWidth - containerWidth) / 2) + 20 
-                    ,insetInlineEnd:0
+                    style={{
+                        paddingInlineEnd: ((windowWidth - containerWidth) / 2) > 40 ? ((windowWidth - containerWidth) / 2) - 40 : ((windowWidth - containerWidth) / 2) + 20
+                        , insetInlineEnd: 0
                     }
                     }
 

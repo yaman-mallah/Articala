@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import MainBtn from '../../../../generalComponent/buttonsComponent/MainBtn'
 import SecondaryBtn from '../../../../generalComponent/buttonsComponent/SecondaryBtn'
 
 
+
 import heroSlide from '../../../../assets/home/Group 1000006183.png'
+import { LoginContext } from '../../../../context/loginContext'
 const MainSlide = () => {
+    let { isLogedIn } = useContext(LoginContext)
+    console.log(isLogedIn)
+
     return (
         <>
             <Row>
@@ -20,8 +25,11 @@ const MainSlide = () => {
                             Join a community of readers and writers and explore exclusive, knowledge-driven content.
                         </p>
                         <div className="d-flex gap-3">
-                            <MainBtn text={'Start Reading'} isFullWidth={true} />
-                            <SecondaryBtn text={'Create Account'} isFullWidth={true} />
+                            {
+                                !isLogedIn &&
+                                    <SecondaryBtn herf={'/create-an-account'} text={'Create Account'} isFullWidth={true} />
+                            }
+                            <MainBtn herf={'/'} text={'Start Reading'} isFullWidth={true} />
                         </div>
                     </div>
                 </Col>

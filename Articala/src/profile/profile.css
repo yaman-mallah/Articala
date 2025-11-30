@@ -1,0 +1,31 @@
+.profileHero{
+    background-color: var(  --color-foundation8b);
+}
+.logoBoxProfile{
+    max-width: 600px;
+}
+.profileForm{
+    max-width: 60%;
+}
+.profileForm *{
+    width: 100%;
+}
+.passwordPopUp{
+    background-color: var(--color-transparent);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90;
+    inset-inline: 0;
+    inset-block: 0;
+    /* transform: translate(50%,50%); */
+}
+.popUpBox{
+    background-color: var(--color-white);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    min-width: 400px;
+}
