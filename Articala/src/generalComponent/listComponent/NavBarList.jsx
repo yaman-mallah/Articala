@@ -14,9 +14,9 @@ const NavBarList = ({isVertical}) => {
             </Link>
         </li>
         <li>
-            <a className="headlineMid" href="">
+            <Link to={'/faq'} className="headlineMid" href="">
                 FAQs
-            </a>
+            </Link>
         </li>
         <li>
             <Link to={'/about-us'} className="headlineMid" href="">
@@ -26,6 +26,11 @@ const NavBarList = ({isVertical}) => {
         <li>
             <Link to={'/contact'} className="headlineMid" href="">
                 Contact
+            </Link>
+        </li>
+        <li>
+            <Link to={'/explore'} className="headlineMid" href="">
+                Explore
             </Link>
         </li>
     </ul>

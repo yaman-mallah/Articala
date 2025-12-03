@@ -1,0 +1,13 @@
+.exploreHero{
+    background-color: var(  --color-foundation8b);
+}
+.filterRadio{
+    width: 15px;
+    height: 15px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: solid 1px var(--color-black);
+}
+.activeRadio.filterRadio{
+    background-color: var( --color-main);
+}

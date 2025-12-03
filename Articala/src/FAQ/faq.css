@@ -1,0 +1,35 @@
+.faqHeroBox {
+  min-height: 90vh;
+  padding: var(--space-md);
+}
+.catTitleBtn {
+  display: flex;
+  align-items: start;
+  padding: var(--space-sm);
+}
+.verticalTabsInnerBox {
+  border: solid 1px var(--color-gray100);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) 0;
+}
+.verticalTabsInnerBox button {
+  border: solid 1px var(--color-gray100);
+  border-width: 0 0 1px 0;
+}
+.catTitleBtn:last-child {
+  border: none;
+}
+.loadingBox {
+  min-height: calc(100vh - 120px);
+}
+.loadingCirclePurple {
+  height: 40px;
+  aspect-ratio: 1 / 1;
+  border: solid;
+  border-width: 2px;
+  border-radius: 50%;
+  border-color: var(--color-main);
+  border-right-color: transparent;
+  animation: spin 0.9s ease-in-out infinite;
+  position: absolute;
+}

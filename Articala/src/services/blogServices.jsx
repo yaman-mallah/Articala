@@ -42,6 +42,44 @@ export const blogServices = {
                 }
                 throw new Error(res)
             })
+    },
+    getFaq() {
+        let URL = ApiObject.BASE_URL + ApiObject.END_POINTS.FAQIMPORT
+        return fetch(URL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                }
+                throw new Error(res)
+            })
+    },
+    getAllArticales(urlInfo = {}) {
+        let params = new URLSearchParams(urlInfo).toString()
+        let name = 'tamkeen', pass = '123456'
+        let URL =
+            ApiObject.BASE_URL +
+            ApiObject.END_POINTS.ALLBLOGS +
+            (params ? `?${params}` : '')
+        const token = btoa(`${name}:${pass}`);
+        return fetch(URL, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Basic ${token}`,
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                }
+                throw new Error(res)
+            })
+
     }
 }
 

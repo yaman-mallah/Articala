@@ -14,6 +14,7 @@ import ContactUsPage from './contact/ContactUsPage';
 import JobsPage from './jobs/JobsPage';
 import ProfilePage from './profile/ProfilePage';
 import FAQPage from './FAQ/FAQPage';
+import ExplorePage from './allArticales/ExplorePage';
 
 
 function App() {
@@ -31,7 +32,8 @@ function App() {
           <Route path='jobs' element={<JobsPage />} />
           <Route path='profile' element={<ProfilePage />} />
           <Route path='faq' element={<FAQPage />} />
-
+          <Route path='explore' element={<ExplorePage />} />
+          
 
           <Route path='*' element={<Page404 />} />
 
