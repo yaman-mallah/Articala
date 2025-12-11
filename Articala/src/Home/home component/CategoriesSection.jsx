@@ -19,7 +19,7 @@ const CategoriesSection = () => {
                     <div className="d-flex flex-column flex-xl-row gap-2 justify-content-between  w-100">
                         <div className="d-flex flex-column flex-md-row gap-2 align-items-md-center align-items-start order-2 order-xl-1">
                             <div className="order-2 order-md-1">
-                                <ArrowLink text={'Browse All'} />
+                                <ArrowLink text={'Browse All'} herf={'/explore'}/>
                             </div>
                             <p className='titleLargMid textGray order-md-2'>
                                 We have more category & subcategory.

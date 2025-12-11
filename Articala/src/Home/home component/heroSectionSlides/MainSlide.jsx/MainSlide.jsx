@@ -29,7 +29,7 @@ const MainSlide = () => {
                                 !isLogedIn &&
                                     <SecondaryBtn herf={'/create-an-account'} text={'Create Account'} isFullWidth={true} />
                             }
-                            <MainBtn herf={'/'} text={'Start Reading'} isFullWidth={true} />
+                            <MainBtn herf={'/explore'} text={'Start Reading'} isFullWidth={true} />
                         </div>
                     </div>
                 </Col>

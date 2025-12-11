@@ -41,18 +41,19 @@ const FaqHeroSection = () => {
                 <div className="loadingCirclePurple"></div>
             </div>
         )
+        
     return (
         <>
-            <div className="faqHeroBox">
+            <div className="pt-4">
                 <Container>
                     <Row>
                         <Col lg={4}>
-                            <div className="p-3 verticalTabsBox">
+                            <div className="p-lg-3 mb-4 p-0 verticalTabsBox ">
                                 <div className="verticalTabsInnerBox d-flex flex-column">
                                     {
                                         questionsCats.map((e, index) =>
                                             <button
-                                                className='catTitleBtn'
+                                                className={show==e.catId?'catTitleBtn currentBtn':'catTitleBtn'}
                                                 key={index}
                                                 onClick={() => {
                                                     setShow(e.catId)

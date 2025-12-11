@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { blogServices } from '../services/blogServices'
+import { FilterContext } from '../context/filterContext'
 
 
 const ExploreFilter = () => {
+    let { globalCurrentCat, setGlobalCurrentCat } = useContext(FilterContext)
+    
+    console.log(globalCurrentCat)
+    let [isLoading, setIsLoading] = useState(true)
     let [cats, setCats] = useState([])
+
+
     useEffect(() => {
         blogServices.getCats()
             .then((data) => {
                 setCats(data)
             })
             .catch((err) => console.log(err))
-            .finally(() => console.log('fetch is done'))
+            .finally(() => setIsLoading(false))
     }, [])
 
     let [currentCat, setCurrentCat] = useState(null)
@@ -18,6 +25,14 @@ const ExploreFilter = () => {
     useEffect(() => {
         console.log(currentCat)
     }, [currentCat])
+    if (isLoading) {
+        return (
+            <div className="galleryLoadingScreen d-flex justify-content-center align-items-center">
+                <div className="loadingCircle purpleBorder"></div>
+            </div>
+        )
+    }
+
     return (
         <>
             <div className="d-flex flex-column py-5 gap-4">
@@ -41,6 +56,7 @@ const ExploreFilter = () => {
                                     onChange={() => {
                                         setCurrentCat(e.id)
                                         console.log('changed')
+                                        setGlobalCurrentCat(e.id)
                                     }}
                                     name="category"
                                     htmlFor={`cat-${e.name}`}
@@ -56,7 +72,10 @@ const ExploreFilter = () => {
                         )
                     }
                     <button
-                        onClick={() => setCurrentCat(null)}
+                        onClick={() => {
+                            setCurrentCat(null)
+                            setGlobalCurrentCat(null)
+                            }}
                         className='mainBtn textWhite'
                     >
                         remove filter

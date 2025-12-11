@@ -31,30 +31,32 @@ const TopWritersSection = () => {
                                 <p className='titleLargMid'>
                                     Thousands of users waiting for a Articles. Start writing & earning now!.
                                 </p>
-                                <ArrowLink text={'Browse All'} end={true} />
+                                <ArrowLink text={'Browse All'} herf={'/explore'} end={true} />
                             </div>
                         </div>
-                        <div className="w-100">
+                        <div className="w-100 topWritersSwiper">
 
                             <Swiper
                                 slidesPerView={3}
                                 spaceBetween={30}
                                 breakpoints={{
-                                    0:{
-                                        slidesPerView:1
+                                    0: {
+                                        slidesPerView: 1
                                     },
-                                    992:{
-                                        slidesPerView:2
+                                    992: {
+                                        slidesPerView: 2
                                     },
-                                    1200:{
-                                        slidesPerView:3
+                                    1200: {
+                                        slidesPerView: 3
                                     },
                                 }}
+                                loop={true}
                             >
                                 {
                                     topWriter.cards.map((e) =>
                                         <SwiperSlide>
-                                            <TopWriterCard height={'100%'} img={e.image} name={e.author} rating={e.rating} articlesNumber={e.articles} title={e.courseTitle} />
+                                            <TopWriterCard
+                                                height={'100%'} img={e.image} name={e.author} rating={e.rating} articlesNumber={e.articles} title={e.courseTitle} />
                                         </SwiperSlide>
                                     )
                                 }

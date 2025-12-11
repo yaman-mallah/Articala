@@ -89,9 +89,9 @@ h1 {
 }
 .headlineLargmid {
   font-family: "Roboto", sans-serif;
-  font-weight: 500;
+  font-weight: 400;
   font-style: Medium;
-  font-size: 32px;
+  font-size: 25px;
   line-height: 140%;
   letter-spacing: 0%;
 }
@@ -110,6 +110,7 @@ h1 {
   font-size: 22px;
   line-height: 140%;
   letter-spacing: 0%;
+  justify-content: s;
 }
 .titleMid {
   font-family: "Roboto", sans-serif;
@@ -130,7 +131,7 @@ h1 {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-style: Medium;
-  font-size: 22px;
+  font-size: 19px;
   line-height: 140%;
   letter-spacing: 0%;
 }
@@ -538,4 +539,16 @@ nav {
 .imguploadeBox input{
   position: absolute;
   inset: 0;
+}
+.mapPosition{
+  z-index: 0;
+}
+.purpleBorder{
+  border: solid 1px var(--color-foundation8b);
+  border-right: transparent;
+}
+main{
+  min-height: 70vh;
+  position: relative;
+  overflow: hidden;
 }

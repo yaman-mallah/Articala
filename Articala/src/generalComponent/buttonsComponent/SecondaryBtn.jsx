@@ -6,7 +6,7 @@ const SecondaryBtn = ({ isFullWidth, text, herf }) => {
     return (
         <Link 
             to={herf}
-            className='secondaryBtn'
+            className='secondaryBtn d-flex justify-content-center'
             style={isFullWidth?{width:'100%'}:null}
 
         >

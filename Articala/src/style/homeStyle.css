@@ -41,12 +41,22 @@
   max-width: 2000px;
   margin: 0 auto;
 }
-
+@media screen and (min-width: 1200px) {
+  .topWritersSwiper .swiper-slide.swiper-slide-next {
+    scale: 100%;
+    opacity: 1;
+  }
+  .topWritersSwiper .swiper-slide {
+    scale: 90%;
+    opacity: 0.8;
+    transition: all 0.3s ease-in-out;
+  }
+}
 
 /* job section */
-.jobBox{
-    background-color: var(--color-fundation);
-    padding: var(--space-xl) 0;
+.jobBox {
+  background-color: var(--color-fundation);
+  padding: var(--space-xl) 0;
 }
 .jobTitleBox {
   background-color: var(--color-funcation-main);
@@ -59,24 +69,21 @@
   inset-inline-end: 0;
   inset-block-start: -50px;
 }
-.latestArtCard{
+.latestArtCard {
   background-color: var(--color-white);
   padding: var(--space-md);
   border-radius: var(--radius-lg);
 }
-.latestArtCard img{
+.latestArtCard img {
   border-radius: var(--radius-md);
 }
-.majorBox{
-  background-color: var( --color-light);
+.majorBox {
+  background-color: var(--color-light);
   border-radius: var(--radius-lg);
   width: fit-content;
-  padding: 10px var(--space-md) ;
+  padding: 10px 15px;
   color: var(--color-funcation-main);
 }
-
-
-
 
 @media screen and (max-width: 1200px) {
   .logoSlide {

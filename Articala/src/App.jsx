@@ -15,6 +15,7 @@ import JobsPage from './jobs/JobsPage';
 import ProfilePage from './profile/ProfilePage';
 import FAQPage from './FAQ/FAQPage';
 import ExplorePage from './allArticales/ExplorePage';
+import Articale from './allArticales/articalePerPage/Articale';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path='faq' element={<FAQPage />} />
           <Route path='explore' element={<ExplorePage />} />
           
+          <Route path='explore/:id' element={<Articale />} />
 
           <Route path='*' element={<Page404 />} />
 

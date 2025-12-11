@@ -61,10 +61,16 @@ export const blogServices = {
     getAllArticales(urlInfo = {}) {
         let params = new URLSearchParams(urlInfo).toString()
         let name = 'tamkeen', pass = '123456'
+        console.log(urlInfo.currentPage)
         let URL =
             ApiObject.BASE_URL +
             ApiObject.END_POINTS.ALLBLOGS +
-            (params ? `?${params}` : '')
+            (urlInfo ? '?' : '') +
+            (urlInfo.category? `category=${urlInfo.category}&` : '')
+            + (urlInfo.currentPage!=null  ? `page=${urlInfo.currentPage}&` : '')
+        //+ '&items_per_page=21'
+        // (params ? `?${params}` : '')
+        console.log(URL)
         const token = btoa(`${name}:${pass}`);
         return fetch(URL, {
             method: 'GET',
@@ -80,6 +86,21 @@ export const blogServices = {
                 throw new Error(res)
             })
 
-    }
+    },
+    getSinglePage(id) {
+        let URL = ApiObject.BASE_URL + `/node/${id}?_format=json`
+        return fetch(URL, {
+            'method': 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                }
+                throw new Error(res)
+            })
+    },
 }
 

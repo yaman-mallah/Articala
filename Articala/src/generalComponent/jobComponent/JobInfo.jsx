@@ -6,7 +6,7 @@ const JobInfo = ({ isPartTime, isSinor }) => {
             className='d-flex w-100 h-100 justify-content-between  align-items-end'
         >
 
-            <div className="d-flex">
+            <div className="d-flex align-items-center">
                 {isPartTime ?
                     <div className="d-flex align-items-center gap-1">
                         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">

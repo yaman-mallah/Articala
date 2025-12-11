@@ -29,6 +29,14 @@ const OurPartners = () => {
                                 disableOnInteraction: false, // keeps autoplay even after user touches it
                                 pauseOnMouseEnter: false,
                             }}
+                            breakpoints={{
+                                0:{
+                                    slidesPerView:2,
+                                },
+                                786:{
+                                    slidesPerView:'auto'
+                                }
+                            }}
 
                         // loopAdditionalSlides={10} 
                         >

@@ -132,11 +132,11 @@ export const loginService = {
                         "value": LName
                     }
                 ],
-                // "user_picture": [
-                //     {
-                //         "target_id": img
-                //     }
-                // ]
+                "user_picture": [
+                    {
+                        "target_id": img
+                    }
+                ]
 
             })
         })

@@ -6,7 +6,7 @@ const MainSlide = () => {
     return (
         <>
             <Row>
-                <Col lg={6}>
+                <Col lg={6} className='order-2 order-xl-1'>
                     <div className="d-flex flex-column justify-content-center h-100 gap-3 py-5">
                         <h1 className='DisplayMid'>Join the most incredible & creative team.</h1>
                         <p className='textGray500 headlineMid'>
@@ -23,7 +23,7 @@ const MainSlide = () => {
                         </a>
                     </div>
                 </Col>
-                <Col lg={6}>
+                <Col lg={6} className='order-1 order-xl-2'>
                 <div className="d-flex justify-content-center w-100 py-5">
 
                     <img src={mainImg} alt="" />

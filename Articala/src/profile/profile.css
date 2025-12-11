@@ -29,3 +29,9 @@
     padding: var(--space-md);
     min-width: 400px;
 }
+.profileImgEdite{
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    max-width: 100px;
+
+}

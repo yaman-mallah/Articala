@@ -12,6 +12,7 @@ export const ApiObject = {
       IMGUPLOAD: '/file/upload/user/user/user_picture?_format=json',
       FAQIMPORT: '/faq-list',
       ALLBLOGS:'/blogs-api',
+      POSTABLOG:'/node?_format=json',
    }
 }
-//https://tamkeen-dev.com/api/blogs-api
+

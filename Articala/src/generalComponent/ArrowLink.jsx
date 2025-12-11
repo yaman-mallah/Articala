@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 const ArrowLink = ({ text, herf, end }) => {
     return (
-        <a href={herf} className='purpleLink headlineSmall d-flex align-items-center'>
+        <Link to={herf} className='purpleLink headlineSmall d-flex align-items-center'>
             {
                 !end &&
 
@@ -20,7 +21,7 @@ const ArrowLink = ({ text, herf, end }) => {
                 </svg>
 
             }
-        </a>
+        </Link>
     )
 }
 

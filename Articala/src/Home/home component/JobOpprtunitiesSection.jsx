@@ -8,6 +8,7 @@ import JobCard from '../../generalComponent/JobCard'
 import job1 from '../../assets/home/job/fc83eff6ccb6c834e2fe3dcb2a6175a92092ce8f.png'
 import job2 from '../../assets/home/job/Course Images.png'
 import job3 from '../../assets/home/job/Course Images-1.png'
+import { Link } from 'react-router'
 
 const JobOpprtunitiesSection = ({NoMore}) => {
   let [containerWidth, setContainerWidth] = useState()
@@ -111,10 +112,10 @@ const JobOpprtunitiesSection = ({NoMore}) => {
 
         >{
           !NoMore&&
-          <a href="" className='secondaryBtn textBlack'>
+          <Link to="/contact" className='secondaryBtn textBlack'>
 
             View More
-          </a>
+          </Link>
         }
         </div>
       </div>

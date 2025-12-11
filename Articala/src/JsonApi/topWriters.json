@@ -26,6 +26,60 @@
       "courseTitle": "2021 Complete Python Bootcamp From Zero to Hero...",
       "rating": 4.7,
       "articles": 13
+    },
+    {
+      "id": 4,
+      "image": "../../src/JsonApi/imgs/Rectangle 9786-1.png",
+      "author": "Mohammad alhaj",
+      "authorTagColor": "lavender",
+      "courseTitle": "2021 Complete Python Bootcamp From Zero to Hero...",
+      "rating": 4.7,
+      "articles": 13
+    },
+    {
+      "id": 5,
+      "image": "../../src/JsonApi/imgs/Rectangle 9787.png",
+      "author": "Mohammad alhaj",
+      "authorTagColor": "beige",
+      "courseTitle": "2021 Complete Python Bootcamp From Zero to Hero...",
+      "rating": 4.7,
+      "articles": 13
+    },
+    {
+      "id": 6,
+      "image": "../../src/JsonApi/imgs/Rectangle 9786.png",
+      "author": "Mohammad alhaj",
+      "authorTagColor": "lavender",
+      "courseTitle": "2021 Complete Python Bootcamp From Zero to Hero...",
+      "rating": 4.7,
+      "articles": 13
+    },
+    {
+      "id": 7,
+      "image": "../../src/JsonApi/imgs/Rectangle 9786-1.png",
+      "author": "Mohammad alhaj",
+      "authorTagColor": "lavender",
+      "courseTitle": "2021 Complete Python Bootcamp From Zero to Hero...",
+      "rating": 4.7,
+      "articles": 13
+    },
+    {
+      "id": 8,
+      "image": "../../src/JsonApi/imgs/Rectangle 9787.png",
+      "author": "Mohammad alhaj",
+      "authorTagColor": "beige",
+      "courseTitle": "2021 Complete Python Bootcamp From Zero to Hero...",
+      "rating": 4.7,
+      "articles": 13
+    },
+    {
+      "id": 9,
+      "image": "../../src/JsonApi/imgs/Rectangle 9786.png",
+      "author": "Mohammad alhaj",
+      "authorTagColor": "lavender",
+      "courseTitle": "2021 Complete Python Bootcamp From Zero to Hero...",
+      "rating": 4.7,
+      "articles": 13
     }
   ]
 }

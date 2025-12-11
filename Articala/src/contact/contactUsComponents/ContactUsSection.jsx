@@ -16,14 +16,14 @@ const ContactUsSection = () => {
                                 Enim tempor eget pharetra facilisis sed maecenas adipiscing. Eu leo molestie vel, ornare non id blandit netus.
                             </p>
                             <div className="formBox">
-                                <EmailForm/>
+                                <EmailForm />
                             </div>
                         </div>
 
-                        
+
                     </Col>
                     <Col lg={7}>
-                        <Map/>
+                            <Map />
                     </Col>
                 </Row>
             </Container>

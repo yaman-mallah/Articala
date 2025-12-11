@@ -11,7 +11,7 @@ import 'swiper/css/scrollbar';
 import '../../style/homeStyle.css'
 import MainSlide from './heroSectionSlides/MainSlide.jsx/MainSlide';
 import SecondSlide from './heroSectionSlides/MainSlide.jsx/SecondSlide';
-
+import { Autoplay } from 'swiper/modules';
 
 const HeroSection = () => {
     return (
@@ -21,7 +21,13 @@ const HeroSection = () => {
 
                     <Swiper
                         spaceBetween={30}
-
+                        modules={[Autoplay]}
+                        autoplay={{
+                            delay: 2500,
+                            disableOnInteraction: false,
+                            pauseOnMouseEnter: true,
+                        }}
+                        loop={true}
                     >
                         <SwiperSlide>
                             <MainSlide />
@@ -29,9 +35,9 @@ const HeroSection = () => {
                         <SwiperSlide>
                             <MainSlide />
                         </SwiperSlide>
-                       
 
-     
+
+
                     </Swiper>
                 </div>
             </Container>

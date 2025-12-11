@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import NavBar from '../generalComponent/NavBar'
 import Footer from '../generalComponent/Footer'
 import { Col, Container, Row } from 'react-bootstrap'
@@ -9,8 +9,12 @@ import { useNavigate } from 'react-router'
 import { loginService } from '../services/loginService'
 import MainBtn from '../generalComponent/buttonsComponent/MainBtn'
 
+import { LoginContext } from '../context/loginContext'
+
 const ProfilePage = () => {
     let navigate = useNavigate();
+
+    let { setImgLink } = useContext(LoginContext)
 
     let [isLoading, setIsLoading] = useState(false)
     let info = JSON.parse(localStorage.getItem("profileInfo"))
@@ -46,22 +50,54 @@ const ProfilePage = () => {
         img: null
     })
 
+    // Upload image and return the uploaded file id (fid) so callers can await it.
+    let uploadImg = async (file, pass, name) => {
+        if (!file) return undefined
+        const userData = JSON.parse(localStorage.getItem('userData'))
+        try {
+            const data = await loginService.sendProfileImg(userData.token, pass, name, file, 'myfile')
+            console.log('upload response', data)
+            const fid = data?.fid?.[0]?.value
+            if (fid) setimgUuid(fid)
+            return fid
+        } catch (err) {
+            console.error('uploadImg failed', err)
+            throw err
+        } finally {
+            console.log('img upload is done')
+        }
+    }
+
     let [password, setPassword] = useState('')
-    let confirm = () => {
+    let confirm = async () => {
         setError(false)
         setIsLoading(true)
         let userData = JSON.parse(localStorage.getItem('userData'))
         // console.log(password, userInfo.name[0].value, userInfo.uid[0].value, userData.token)
 
 
-        uploadImg(unSubmitedInfo.img, password, userInfo.name[0].value)
-        loginService.UpdateProfile(password, userInfo.name[0].value, userInfo.uid[0].value, userData.token, unSubmitedInfo.fname, unSubmitedInfo.lname ,imguuid)
+        // upload and get the uploaded file id synchronously before calling UpdateProfile
+        let imgId = undefined
+        try {
+            imgId = await uploadImg(unSubmitedInfo.img, password, userInfo.name[0].value)
+        } catch (err) {
+            setError(err.message || 'Image upload failed')
+            setIsLoading(false)
+            return
+        }
+
+        // prefer newly uploaded id, but fall back to existing imguuid state if no new upload
+        const idToUse = imgId ?? imguuid ?? null
+
+        loginService.UpdateProfile(password, userInfo.name[0].value, userInfo.uid[0].value, userData.token, unSubmitedInfo.fname, unSubmitedInfo.lname, idToUse)
             .then(data => {
 
                 localStorage.setItem('profileInfo', JSON.stringify(data))
+                console.log(data)
                 info = JSON.parse(localStorage.getItem('profileInfo'))
                 setUserInfo(info)
-
+                setImgLink(data.user_picture[0].url)
+                setPopUpIshidden(true)
             })
             .catch(err =>
                 setError(err.message)
@@ -69,6 +105,7 @@ const ProfilePage = () => {
             .finally(() => {
                 console.log('fetch is done')
                 setIsLoading(false)
+                
             })
     }
     let [popUpIshidden, setPopUpIshidden] = useState(true)
@@ -89,20 +126,8 @@ const ProfilePage = () => {
     }, [imguuid])
 
 
-    //img upload
-    let uploadImg = (file, pass, name) => {
-        console.log(file?.size)
-        console.log(file?.type)
-        console.log(file)
-        let userData = JSON.parse(localStorage.getItem('userData'))
-        loginService.sendProfileImg(userData.token, pass, name, file, 'myfile')
-            .then((data) => {
-                console.log(data)
-                setimgUuid(data.uid[0].target_id)
-            }
-            )
-            .finally(() => console.log('img upload is done'))
-    }
+
+
     if (isFinished)
         return (
             <>
@@ -558,9 +583,16 @@ const ProfilePage = () => {
                             <Row>
                                 <Col lg={6} className=''>
                                     <div className="d-flex flex-column gap-4 py-4">
-                                        <label htmlFor="img" className='imguploadeBox position-relative'>
+
+
+                                        <label
+                                            htmlFor="img"
+                                            className='imguploadeBox align-items-center  d-flex gap-3 justify-content-center  position-relative'
+                                            style={{}}
+                                        >
 
                                             <input
+                                                disabled={isDisabled}
                                                 type="file"
                                                 accept='image/*'
                                                 style={{ opacity: 0 }}
@@ -573,12 +605,21 @@ const ProfilePage = () => {
                                                 }}
                                             />
                                             <img
-                                                style={{ maxWidth: '100px', }}
+                                                style={isDisabled ? { opacity: 0.8 } : { opacity: 1 }}
                                                 src={unSubmitedInfo.img ? URL.createObjectURL(unSubmitedInfo.img) :
                                                     JSON.parse(localStorage.getItem('profileImg'))
                                                 }
+                                                className='profileImgEdite'
                                                 alt="profile img" />
+
+                                            <p
+                                                className='w-100 titleMid'
+                                                style={isDisabled ? { opacity: 0 } : { opacity: 1 }}
+                                            >
+                                                Click to upload an image
+                                            </p>
                                         </label>
+
 
                                         <label htmlFor="user name">
                                             <p>user name</p>
@@ -645,16 +686,29 @@ const ProfilePage = () => {
                                                         }}
                                                     >
                                                         Edit
-                                                    </button> :
-                                                    <button
-                                                        className='secondaryBtn w-100 '
-                                                        onClick={(e) => {
-                                                            setPopUpIshidden(e = !e)
-                                                            submit()
-                                                        }}
-                                                    >
-                                                        submit
                                                     </button>
+                                                    :
+                                                    <div className="d-flex gap-2 w-100">
+
+                                                        <button
+                                                            className='mainBtn w-100 textWhite'
+                                                            onClick={(e) => {
+                                                                setPopUpIshidden(e = !e)
+                                                                submit()
+                                                            }}
+                                                        >
+                                                            submit
+                                                        </button>
+                                                        <button
+                                                            className='secondaryBtn w-100 '
+                                                            onClick={(e) => {
+                                                                setIsDisabled(true)
+                                                            }}
+                                                        >
+                                                            cancel
+                                                        </button>
+                                                    </div>
+
 
                                             }
                                         </div>

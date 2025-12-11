@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 const MainBtn = ({ isFullWidth, text, herf }) => {
   return (
     <Link to={herf}
-      className='mainBtn'
+      className='mainBtn d-flex justify-content-center'
       style={isFullWidth ? { width: '100%' } : null}
 
     >

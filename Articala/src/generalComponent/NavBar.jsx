@@ -11,6 +11,7 @@ import { loginService } from '../services/loginService'
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
+
 const NavBar = () => {
     let [isSideBarOpen, setIsSideBarOpen] = useState(false)
     let [windowWidth, setWindowWidth] = useState(window.innerWidth)
@@ -32,6 +33,7 @@ const NavBar = () => {
     // console.log(isLogedIn,userInfo)
     // if (userInfo)
     // loginService.getUserInfo(userInfo)
+
 
 
 

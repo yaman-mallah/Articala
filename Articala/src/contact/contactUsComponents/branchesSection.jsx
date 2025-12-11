@@ -30,6 +30,17 @@ const BranchesSection = () => {
                         <Swiper
                             slidesPerView={3}
                             spaceBetween={30}
+                            breakpoints={{
+                                0: {
+                                    slidesPerView: 1
+                                },
+                                786: {
+                                    slidesPerView: 2
+                                },
+                                1200: {
+                                    slidesPerView: 3
+                                },
+                            }}
                         >
                             <SwiperSlide>
                                 <BranchCard place={'Dubai, UAE'} img={img2} />
@@ -42,8 +53,8 @@ const BranchesSection = () => {
                             </SwiperSlide>
                         </Swiper>
                     </div>
-                </Container>
-            </div>
+                </Container >
+            </div >
         </>
     )
 }

@@ -4,6 +4,7 @@ import LatestArticles from '../../JsonApi/latestArticles.json'
 import { LoginContext } from '../../context/loginContext'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import LatestArticlesCard from './latestArticlesCard'
+import { Link } from 'react-router'
 
 const LatestArticlesSection = () => {
     let [containerWidth, setContainerWidth] = useState()
@@ -32,7 +33,7 @@ const LatestArticlesSection = () => {
         <>
             <div className="latestArticlesBox position-relative">
                 <div className="latestTitleBox"
-                    style={{ paddingInlineStart: (windowWidth - containerWidth) / 2 }}
+                    style={{ paddingInlineStart: ((windowWidth - containerWidth) / 2) + 30 }}
                 >
                     <h2 className='DisplayMid'>
                         Latest Articles
@@ -48,7 +49,7 @@ const LatestArticlesSection = () => {
                                 slidesPerView:1
                             },
                             992:{
-                                slidesPerView:3
+                                slidesPerView:2
                             },
                             1200:{
                                 slidesPerView:3
@@ -73,10 +74,10 @@ const LatestArticlesSection = () => {
                     }
 
                 >
-                    <a href="" className='secondaryBtn textBlack'>
+                    <Link to="/explore" className='secondaryBtn textBlack'>
 
                         View More
-                    </a>
+                    </Link>
                 </div>
             </div>
         </>

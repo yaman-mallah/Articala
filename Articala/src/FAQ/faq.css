@@ -33,3 +33,6 @@
   animation: spin 0.9s ease-in-out infinite;
   position: absolute;
 }
+.currentBtn.catTitleBtn {
+  background-color: var(--color-light);
+}
