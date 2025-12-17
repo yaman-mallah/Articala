@@ -40,7 +40,7 @@ const AllAritcalesGallery = () => {
     useEffect(() => {
         getApi()
     }, [currentPage]);
-    useEffect(()=>setCurrentPage(0),[globalCurrentCat])
+    // useEffect(()=>setCurrentPage(0),[globalCurrentCat])
 
 
 
@@ -75,7 +75,7 @@ const AllAritcalesGallery = () => {
                             }
                             }
                             style={currentPage < 1 ? { opacity: 0.75 } : { opacity: 1 }}
-                            disabled={currentPage <= 1 ? true : false}
+                            disabled={currentPage <= 0 ? true : false}
                         >
                             prev
                         </button>

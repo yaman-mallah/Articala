@@ -54,8 +54,9 @@ const NavBar = () => {
                             </div>
                             <div className="d-flex gap-3  align-items-center z-3">
 
-                                <div className="d-flex d-xxl-none">
+                                <div className={!isLogedIn?"d-flex d-xxl-none":'d-flex d-lg-none'}>
                                     <button
+                                    // style={!isLogedIn||? {display:'none'}:{display:'block'}}
                                         onClick={() => setIsSideBarOpen(e => e = !e)}
                                     >
                                         <svg width="30" height="30" viewBox="0 0 91 58" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -68,15 +69,15 @@ const NavBar = () => {
                                     isLogedIn ?
                                         <>
 
-                                            <TransperentBtn text={'Sign out'} />
+                                        
                                             <div className="d-flex align-items-center  gap-2">
                                                 <p className='titleLargRegular textWhite'>
                                                     
                                                 </p>
                                                 <DropdownButton id="dropdown-basic-button" title={userInfo.current_user.name}>
                                                     <Dropdown.Item href='/profile'>profile</Dropdown.Item>
-                                                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                                    <Dropdown.Item href="/my-articales">my articales</Dropdown.Item>
+                                                    <Dropdown.Item href="#/action-3">sing out</Dropdown.Item>
                                                 </DropdownButton>
                                                 <div className="profileBox">
                                                     <img src={imgLink} alt="profileImage" className='navProfileImage' />
@@ -106,8 +107,8 @@ const NavBar = () => {
                                     <NavBarList isVertical={1} />
                                 </div>
                                 <div className="d-flex gap-3">
-                                    <TransperentBtn text={'Sign In'} />
-                                    <SecondaryBtn text={'Create Account'} />
+                                    <TransperentBtn text={'Sign In'} herf={'/login'} />
+                                    <SecondaryBtn text={'Create Account'} herf={'/create-an-account'}/>
                                 </div>
 
 

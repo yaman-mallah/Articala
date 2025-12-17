@@ -21,7 +21,7 @@
   margin-bottom: var(--space-md);
   overflow: hidden;
   position: relative;
-  min-height: 350px;
+  min-height: 300px;
 }
 .exploreCard img {
   height: 60%;

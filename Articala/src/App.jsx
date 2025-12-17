@@ -16,6 +16,9 @@ import ProfilePage from './profile/ProfilePage';
 import FAQPage from './FAQ/FAQPage';
 import ExplorePage from './allArticales/ExplorePage';
 import Articale from './allArticales/articalePerPage/Articale';
+import CreateArticale from './addArticale/CreateArticale';
+import MyArticalesPage from './myArticales/MyArticales';
+
 
 
 function App() {
@@ -34,7 +37,9 @@ function App() {
           <Route path='profile' element={<ProfilePage />} />
           <Route path='faq' element={<FAQPage />} />
           <Route path='explore' element={<ExplorePage />} />
-          
+          <Route path='create-new-articale' element={<CreateArticale />} />
+          <Route path='my-articales' element={<MyArticalesPage />} />
+
           <Route path='explore/:id' element={<Articale />} />
 
           <Route path='*' element={<Page404 />} />
