@@ -1,0 +1,70 @@
+.loginHeaderBox {
+  background-color: var(--color-main);
+  background-color: var(--color-main);
+  padding: var(--space-md);
+  overflow: hidden;
+  color: var(--color-white);
+}
+.loginImgBox {
+  min-height: calc(100vh - 112px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loginBoxAdmin {
+  background: #ffff;
+  background: linear-gradient(
+    90deg,
+    rgb(175, 207, 236) 45%,
+    rgb(255, 255, 255) 45%
+  );
+}
+.loginImgBox img {
+  height: 100%;
+  position: relative;
+  /* inset-inline-end: -60px; */
+}
+input {
+  width: 100%;
+  padding: 12px 18px;
+  border: solid 1px var(--color-gray100);
+}
+.mainForm label {
+  display: flex;
+  flex-direction: column;
+}
+.checkboxCustom {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  border: 2px solid var(--color-gray500);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+.checkboxInput {
+  position: absolute;
+  inset-inline-start: 0;
+  opacity: 0;
+  /* z-index: 10; */
+}
+.checkboxInput:checked + .checkboxCustom {
+  background-color: var(--color-foundation8b);
+  border-color: var(--color-main);
+}
+.inputPasswordBox input {
+  border: none;
+}
+.inputPasswordBox {
+  width: 100%;
+  /* padding: 12px 18px; */
+  border: solid 1px var(--color-gray100);
+}
+
+.inputPasswordBox:focus-within {
+  border: solid 1px var(--color-funcation-main);
+}
+.inputPasswordBox input:focus {
+  border: none;
+  outline: none;
+  box-shadow: none !important;
+}

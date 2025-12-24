@@ -1,0 +1,316 @@
+import React, { useContext, useEffect, useState } from 'react'
+import NavBar from '../generalComponent/NavBar'
+import Footer from '../generalComponent/Footer'
+import { useParams } from 'react-router'
+import { blogServices } from '../services/blogServices'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Container } from 'react-bootstrap'
+import { CRUDServices } from '../services/CRUDServices'
+import { loginService } from '../services/loginService'
+import { LoginContext } from '../context/loginContext'
+import { ApiObject } from '../services/ApiObject'
+
+const MyArticalesEdit = () => {
+    let { id } = useParams()
+    let [info, setInfo] = useState()
+    let [allCats, setAllCats] = useState([])
+    let [unSubmitedChanges, setUnSubmitedChanges] = useState({
+        imgGallery: []
+    })
+
+    let [isLoading, setIsLoading] = useState({
+        mainImg: false,
+        gallery: false
+    })
+
+    let [galleryIds, setGalleryIds] = useState([])
+
+    let [userInfo, setUserInfo] = useState()
+    let [mainImg, setMainImg] = useState()
+
+    let [userData, setUserData] = useState()
+
+    let [token, setToken] = useState()
+    let { setGlobalToken } = useContext(LoginContext)
+
+
+    useEffect(() => {
+        blogServices.getCats()
+            .then(data => setAllCats(data))
+            .finally(() => { })
+    }, [])
+    useEffect(() => {
+        let userD = JSON.parse(localStorage.getItem('userData'))
+        setUserInfo(userD)
+        blogServices.getSinglePage(id)
+            .then(data => {
+                console.log(data)
+                setInfo(data)
+            })
+            .finally(() => console.log('done'))
+    }, [])
+    useEffect(() => {
+        setUnSubmitedChanges({
+            ...unSubmitedChanges,
+            title: info?.title[0].value,
+            body: info?.body[0].value,
+            cat: info?.field_category[0].target_id,
+            tags:info?.field_tags.map(tag=>{return{'target_id':tag.target_id}}),
+            imgId: info?.field_image[0].target_id,
+            imgGallery: info?.field_gallery
+        })
+        setMainImg(info?.field_image[0].url)
+    }, info)
+    // useEffect(() => {
+    //     console.log(unSubmitedChanges)
+    // }, [unSubmitedChanges])
+
+    // let update = () => {
+    //     CRUDServices.updateArticale(id)
+    // }
+    let getToken = () => {
+        loginService.getToken()
+            .then((data) => {
+                setToken(`${data}`)
+                setGlobalToken(data)
+
+            })
+            .catch((err) => {
+                console.error(err)
+            })
+            .finally(() => { console.log('token is done') })
+        setUserData(JSON.parse(localStorage.getItem('userData')))
+
+    }
+    useEffect(() => console.log(mainImg), [mainImg])
+    let uploadingGallery = (e) => {
+        setIsLoading({
+            ...isLoading,
+            gallery: true
+        })
+        const selectedFiles = Array.from(e.target.files)
+        getToken()
+        console.log(userData)
+        selectedFiles.map((file, index) => {
+            CRUDServices.uploadArticaleGallery(token, file, userData.auth)
+                .then(data => {
+                    console.log(data)
+                    
+                    setUnSubmitedChanges({
+                        ...unSubmitedChanges,
+                        imgGallery: [
+                            ...unSubmitedChanges.imgGallery,
+                            {
+                                id: data.fid[0].value,
+                                url: ApiObject.BASE_URL + data.uri[0].url
+                            }]
+                    })
+                    setGalleryIds([
+                        ...galleryIds,
+                        { 'target_id': data.fid[0].value }
+                    ])
+
+                })
+                .finally(() => {
+                    setIsLoading({
+                        ...isLoading,
+                        gallery: false
+                    })
+                    console.log('uploading is Done')
+                })
+        })
+
+    }
+
+     let uploadMainImg = (e) => {
+            setIsLoading({
+                ...isLoading,
+                'mainImg': true
+            })
+            let file = e.target.files[0]
+            getToken()
+            CRUDServices.uploadArticaleImg(token, userData.auth, file)
+                .then((data) => {
+                    console.log(data)
+                    setUnSubmitedChanges({
+                        ...unSubmitedChanges,
+                        imgId: {
+                            id: data.fid[0].value,
+                            url: ApiObject.BASE_URL + data.uri[0].url
+                        }
+                    })
+                    setMainImg( ApiObject.BASE_URL + data.uri[0].url)
+                })
+                .catch(err => console.error(err))
+                .finally(() => {
+                    setIsLoading({
+                        ...isLoading,
+                        mainImg: false
+                    })
+                    console.log('uploading is done')
+                })
+        }
+
+    let sendApi = () => {
+        getToken()
+        console.log(userData)
+        CRUDServices.updateArticale(token ,id, userData.auth, unSubmitedChanges, galleryIds)
+    }
+    return (
+        <>
+            <header>
+                <NavBar />
+            </header>
+            <main>
+                <Container>
+
+                    <form action=""
+                        className='d-flex flex-column gap-3 py-4'
+                        onSubmit={(e) => {
+                            e.preventDefault()
+                            sendApi()
+                        }}
+                    >
+                        <label
+                            htmlFor=""
+                            className='d-flex flex-column gap-2'
+                        >
+                            <h3>title</h3>
+                            <input
+                                onInput={(e) => {
+                                    setUnSubmitedChanges({
+                                        ...unSubmitedChanges,
+                                        title: e.target.value
+                                    })
+                                }}
+                                value={unSubmitedChanges.title}
+                                type="text" />
+                        </label>
+                        <label
+                            htmlFor=""
+                            className='d-flex flex-column gap-2'
+                        >
+                            <h3>body</h3>
+                            <textarea name="" id=""
+                                className='w-100'
+                                onInput={(e) => {
+                                    setUnSubmitedChanges({
+                                        ...unSubmitedChanges,
+                                        body: e.target.value
+                                    })
+                                }}
+                                value={unSubmitedChanges.body}
+                            >
+
+
+                            </textarea>
+                        </label>
+                        <label
+                            htmlFor="mainImg"
+                            className='d-flex flex-column gap-2'
+                        >
+                            <h5>upload main img</h5>
+                            <img
+                                className='articaleMainImg'
+                                src={mainImg}
+                                alt="current upoaded img" />
+                            <input
+                                id='mainImg'
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => {
+                                    console.log(e.target.files[0])
+                                    // setMainImg(URL.createObjectURL(e.target.files[0]))
+                                    uploadMainImg(e)
+                                }}
+                            />
+                        </label>
+                        <div className="d-flex gap-2">
+
+                            {
+                                unSubmitedChanges?.imgGallery?.map((img, index) =>
+                                    <div className='galleryImgBox position-relative'>
+                                        <button
+                                            className='removeButtonGallery'
+                                            onClick={() => {
+                                                setUnSubmitedChanges({
+                                                    ...unSubmitedChanges,
+                                                    imgGallery: unSubmitedChanges?.imgGallery?.filter(prev =>
+                                                        prev.target_id != img.target_id)
+                                                })
+                                            }}
+                                            type='button'
+                                        >
+                                            X
+                                        </button>
+                                        <img className='galleryImgs' key={index} src={img.url} alt={img.title} />
+                                    </div>
+                                )
+                            }
+                        </div>
+                        <label
+                            htmlFor="gallery"
+                            className='d-flex flex-column gap-2'
+                        >
+                            <h5>upload gallery imgs</h5>
+                            <input
+                                id='gallery'
+                                type="file"
+                                accept="image/*"
+                                onChange={uploadingGallery}
+                            />
+                        </label>
+                        <div className=" createArticaleSwiperBox">
+                            <Swiper
+                                slidesPerView={4}
+                                spaceBetween={20}
+                            >
+                                {
+                                    allCats.map(e => (
+                                        <SwiperSlide>
+                                            <div
+                                                className='d-flex justify-content-center '
+                                            >
+
+                                                <button
+                                                    className="addCatCard"
+                                                    key={e.id}
+                                                    type='button'
+
+                                                    onClick={() => {
+                                                        console.log(e.id)
+                                                        setUnSubmitedChanges({
+                                                            ...unSubmitedChanges,
+                                                            cat: e.id
+                                                        })
+                                                    }}
+                                                    style={unSubmitedChanges.cat == e.id || unSubmitedChanges.cat == null ? { opacity: 1 } : { opacity: 0.7 }}
+                                                >
+                                                    {e.name}
+                                                </button>
+                                            </div>
+                                        </SwiperSlide>
+                                    ))
+                                }
+                            </Swiper>
+                        </div>
+                        <button
+                            className='mainBtn textWhite'
+                            // style={isReady ? { opacity: 1 } : { opacity: 0.4 }}
+                            // disabled={!isReady}
+                            type='submit'
+                        >
+                            submit
+                        </button>
+                    </form>
+                </Container>
+
+            </main>
+            <footer>
+                <Footer />
+            </footer>
+        </>
+    )
+}
+
+export default MyArticalesEdit

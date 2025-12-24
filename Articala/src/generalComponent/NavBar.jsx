@@ -33,7 +33,10 @@ const NavBar = () => {
     // console.log(isLogedIn,userInfo)
     // if (userInfo)
     // loginService.getUserInfo(userInfo)
-
+    let logOut = () => {
+        localStorage.clear()
+        window.location.reload();
+    }
 
 
 
@@ -54,9 +57,9 @@ const NavBar = () => {
                             </div>
                             <div className="d-flex gap-3  align-items-center z-3">
 
-                                <div className={!isLogedIn?"d-flex d-xxl-none":'d-flex d-lg-none'}>
+                                <div className={!isLogedIn ? "d-flex d-xxl-none" : 'd-flex d-lg-none'}>
                                     <button
-                                    // style={!isLogedIn||? {display:'none'}:{display:'block'}}
+                                        // style={!isLogedIn||? {display:'none'}:{display:'block'}}
                                         onClick={() => setIsSideBarOpen(e => e = !e)}
                                     >
                                         <svg width="30" height="30" viewBox="0 0 91 58" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,18 +72,21 @@ const NavBar = () => {
                                     isLogedIn ?
                                         <>
 
-                                        
+
                                             <div className="d-flex align-items-center  gap-2">
                                                 <p className='titleLargRegular textWhite'>
-                                                    
+
                                                 </p>
                                                 <DropdownButton id="dropdown-basic-button" title={userInfo.current_user.name}>
                                                     <Dropdown.Item href='/profile'>profile</Dropdown.Item>
                                                     <Dropdown.Item href="/my-articales">my articales</Dropdown.Item>
-                                                    <Dropdown.Item href="#/action-3">sing out</Dropdown.Item>
+                                                    <Dropdown.Item href="#/action-3"><button
+                                                            onClick={() => logOut()}
+                                                        >sing out
+                                                        </button></Dropdown.Item>
                                                 </DropdownButton>
                                                 <div className="profileBox">
-                                                    <img src={imgLink} alt="profileImage" className='navProfileImage' />
+                                                    <img src={imgLink ? imgLink : ''} alt="profileImage" className='navProfileImage' />
                                                 </div>
                                             </div>
                                         </>
@@ -108,7 +114,7 @@ const NavBar = () => {
                                 </div>
                                 <div className="d-flex gap-3">
                                     <TransperentBtn text={'Sign In'} herf={'/login'} />
-                                    <SecondaryBtn text={'Create Account'} herf={'/create-an-account'}/>
+                                    <SecondaryBtn text={'Create Account'} herf={'/create-an-account'} />
                                 </div>
 
 

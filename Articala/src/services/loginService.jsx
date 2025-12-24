@@ -72,6 +72,8 @@ export const loginService = {
             throw new Error(res.message);
         })
     },
+
+    //not in use
     getArticalesInfo(userInfo) {
         let URL = ApiObject.BASE_URL + ApiObject.END_POINTS.ARTICALSINFO
         const token = btoa(`${userInfo.name}:${userInfo.pass}`);
@@ -88,12 +90,14 @@ export const loginService = {
             })
 
     },
-    //not in use yet.....
     sendProfileImg(cstoken, pass, name, file) {
         let URL = ApiObject.BASE_URL + ApiObject.END_POINTS.IMGUPLOAD
         const token = btoa(`${name}:${pass}`);
 
-        console.log(file)
+        console.log(file,
+            pass,
+            name
+        )
         return fetch(URL, {
             method: 'POST',
             headers: {
@@ -112,7 +116,7 @@ export const loginService = {
     UpdateProfile(pass, name, userId, tokencrf, FName, LName, img) {
         let URL = ApiObject.BASE_URL + `/user/${userId}?_format=json`
         const token = btoa(`${name}:${pass}`);
-
+       
         return fetch(URL, {
             method: 'PATCH',
             headers: {
@@ -143,6 +147,21 @@ export const loginService = {
             .then(res => {
 
                 if (res.ok) return res.json();
+                throw new Error("Error in response");
+            });
+    },
+    getToken() {
+        let URL = ApiObject.BASE_URL + ApiObject.END_POINTS.TOKEN
+        console.log(URL)
+
+        return fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => {
+                if (res.ok) return res.text();
                 throw new Error("Error in response");
             });
     }

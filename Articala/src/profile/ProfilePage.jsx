@@ -10,6 +10,7 @@ import { loginService } from '../services/loginService'
 import MainBtn from '../generalComponent/buttonsComponent/MainBtn'
 
 import { LoginContext } from '../context/loginContext'
+import { CRUDServices } from '../services/CRUDServices'
 
 const ProfilePage = () => {
     let navigate = useNavigate();
@@ -31,13 +32,13 @@ const ProfilePage = () => {
 
     let [userInfo, setUserInfo] = useState()
 
-    if (info)
 
-        useEffect(() => {
+    useEffect(() => {
+        if (info)
             setUserInfo(info)
 
 
-        }, [])
+    }, [])
     useEffect(() => {
         console.log(userInfo)
     }, [userInfo])
@@ -87,8 +88,16 @@ const ProfilePage = () => {
         }
 
         // prefer newly uploaded id, but fall back to existing imguuid state if no new upload
-        const idToUse = imgId ?? imguuid ?? null
-
+        let idToUse = imgId ?? imguuid ?? null
+        if(idToUse===null)
+            idToUse=userInfo?.user_picture[0]?.target_id
+        console.log((password+
+            userInfo.name[0].value+
+            userInfo.uid[0].value+
+            userData.token+
+            unSubmitedInfo.fname+
+            unSubmitedInfo.lname+
+            idToUse))
         loginService.UpdateProfile(password, userInfo.name[0].value, userInfo.uid[0].value, userData.token, unSubmitedInfo.fname, unSubmitedInfo.lname, idToUse)
             .then(data => {
 
@@ -105,7 +114,7 @@ const ProfilePage = () => {
             .finally(() => {
                 console.log('fetch is done')
                 setIsLoading(false)
-                
+
             })
     }
     let [popUpIshidden, setPopUpIshidden] = useState(true)
@@ -124,6 +133,40 @@ const ProfilePage = () => {
     useEffect(() => {
         console.log(imguuid)
     }, [imguuid])
+
+    let [token, setToken] = useState()
+    let [userData, setUserData] = useState()
+    let { setGlobalToken } = useContext(LoginContext)
+    let getToken = () => {
+        loginService.getToken()
+            .then((data) => {
+                setToken(`${data}`)
+                setGlobalToken(data)
+
+            })
+            .catch((err) => {
+                console.error(err)
+            })
+            .finally(() => { })
+        setUserData(JSON.parse(localStorage.getItem('userData')))
+
+    }
+    useEffect(() => getToken, [])
+
+
+    let deleteUser = () => {
+        getToken()
+        CRUDServices.deleteUser(token, userData.current_user.uid, userData.auth)
+            .then(data => {
+                console.log(data)
+                localStorage.clear();
+                navigate('/')
+                window.location.reload();
+            })
+            .catch(err => console.error(err))
+            .finally(() => {
+            })
+    }
 
 
 
@@ -579,9 +622,28 @@ const ProfilePage = () => {
 
                     </div>
                     <Container>
-                        <div className="d-flex flex-column">
+                        <div className="d-flex flex-column ">
                             <Row>
-                                <Col lg={6} className=''>
+                                <Col lg={3}>
+                                    <div className="verticalNavProfile py-4">
+                                        <ul className='d-flex gap-2 flex-column'>
+                                            <li>
+                                                <button className='headlineMid'>
+                                                    Edit profile
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button
+                                                    className='textRed headlineMid'
+                                                    onClick={() => deleteUser()}
+                                                >
+                                                    Delet accounte
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </Col>
+                                <Col lg={9} className=''>
                                     <div className="d-flex flex-column gap-4 py-4">
 
 
@@ -715,9 +777,7 @@ const ProfilePage = () => {
 
                                     </div>
                                 </Col>
-                                <Col lg={6}>
 
-                                </Col>
                             </Row>
                         </div>
                     </Container>

@@ -20,6 +20,7 @@ const LoginForm = () => {
     //     console.log(loginInfo)
     //     console.log(errorMessage)
     // }, [loginInfo])
+    let [isLogedIn, setIsLogedIn] = useState(false)
 
     let submitInfo = () => {
         setIsSubmited(true)
@@ -30,34 +31,48 @@ const LoginForm = () => {
                 let userData = {
                     token: data.csrf_token,
                     logout_token: data.logout_token,
-                    current_user: data.current_user
+                    current_user: data.current_user,
                 }
+                // userData={...userData,auth:loginInfo.pass}
+                userData = { ...userData, auth: `Basic ${btoa(`${loginInfo.name}:${loginInfo.pass}`)}` }
                 localStorage.setItem('userData', JSON.stringify(userData))
                 setUserInfo(userData)
                 console.log(data.current_user.uid)
 
                 loginService.getUserInfo(loginInfo, data.current_user.uid)
                     .then((data) => {
+
                         console.log(data);
-                        setImgLink(data.user_picture[0].url);
+                        if (data?.user_picture[0]?.url)
+                            setImgLink(data.user_picture[0].url);
+                        else
+                            setImgLink('https://tamkeen-dev.com//api/sites/default/files/2025-12/__0.jpeg')
                         setIsLoged(true)
+                        // if(data.current_user.name){
+                        //     setIsLogedIn(true)
+                        // }
                         console.log('is Setting')
-                        
-                        localStorage.setItem('profileImg',data.user_picture[0].url? JSON.stringify(data.user_picture[0].url):'../../assets/gerall/blank-profile-picture-973460_1280.webp')
+
+                        localStorage.setItem('profileImg', data?.user_picture[0]?.url?.length > 1 ? JSON.stringify(data.user_picture[0].url) : 'https://tamkeen-dev.com//api/sites/default/files/2025-12/__0.jpeg')
                         localStorage.setItem('profileInfo', JSON.stringify(data))
+                        if (userData.current_user.name == 'admin')
+                            navigate("/admin")
+                        else
+                            navigate("/")
                     })
-                    .catch(() => console.log("something went wrong"));
-               
+                    .catch((err) => console.error(err));
+
             })
             .catch((err) => {
                 // console.log(err)
                 // console.error(err.message)
                 setErrorMessage('the password or the user name is wrong')
                 setIsSubmited(false)
-            })
-            .finally(()=> navigate("/"))
 
+            })
+            .finally(() => { })
     }
+
 
     return (
         <form action=""

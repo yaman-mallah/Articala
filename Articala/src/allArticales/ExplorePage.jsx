@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import NavBar from '../generalComponent/NavBar'
 import Footer from '../generalComponent/Footer'
 import Logo from '../generalComponent/Logo'
@@ -13,7 +13,10 @@ import { FilterContext } from '../context/filterContext'
 import AddArticaleLink from '../addArticale/AddArticaleLink'
 
 const ExplorePage = () => {
-    
+    let [search, setSearch] = useState()
+    let [input, setInput] = useState()
+    useEffect(() => console.log(search), [search])
+
 
     return (
         <>
@@ -476,11 +479,35 @@ const ExplorePage = () => {
                                 <ExploreFilter />
                             </Col>
                             <Col>
-                                <AllAritcalesGallery />
+                                <form
+                                    onSubmit={(e) => {
+                                        e.preventDefault()
+                                    }}
+                                    className="d-flex py-3 w-100 gap-3"
+                                >
+                                    <input
+                                        type="text" placeholder='search'
+                                        onInput={(e) => {
+                                            setInput(e.target.value)
+                                            setSearch(e.target.value)
+                                        }}
+
+                                    />
+                                    <button
+                                        className='mainBtn textWhite'
+                                        onClick={() => {
+                                            setSearch(input)
+                                        }}
+                                    >
+                                        Search
+                                    </button>
+                                </form>
+
+                                <AllAritcalesGallery search={search} />
                             </Col>
                         </Row>
                     </Container>
-                    <AddArticaleLink/>
+                    <AddArticaleLink />
                 </main>
             </FilterProvider>
             <footer>

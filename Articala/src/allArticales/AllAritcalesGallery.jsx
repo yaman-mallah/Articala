@@ -4,9 +4,9 @@ import { Col, Row } from 'react-bootstrap'
 import ExploreCard from './exploreComponent/ExploreCard'
 import { FilterContext } from '../context/filterContext'
 
-const AllAritcalesGallery = () => {
+const AllAritcalesGallery = (search) => {
     let [articalesCard, setArticalesCard] = useState([])
-    let { setGlobalCurrentCat, globalCurrentCat } = useContext(FilterContext)
+    let { globalCurrentCat, globalCurrentTage } = useContext(FilterContext)
     let [isLoading, setIsLoading] = useState(true)
     let [navigationInfo, setNavigationInfo] = useState({})
     let [currentPage, setCurrentPage] = useState(0)
@@ -15,17 +15,19 @@ const AllAritcalesGallery = () => {
     let getApi = () => {
         window.scrollTo({ top: 0, behavior: "smooth" })
         setIsLoading(true)
-        console.log(currentPage)
+        // console.log(currentPage)
         blogServices.getAllArticales({
             category: globalCurrentCat,
-            currentPage: currentPage
+            currentPage: currentPage,
+            currentTag:globalCurrentTage,
+            search:search
         })
             .then(data => {
                 setArticalesCard(data.rows)
                 setNavigationInfo(data.pager)
 
-                console.log(data)
-                console.log(data.rows)
+                // console.log(data)
+                // console.log(data.rows)
             })
             .catch((err) => console.error(err))
             .finally(() => {
@@ -38,10 +40,16 @@ const AllAritcalesGallery = () => {
         getApi()
     }, [globalCurrentCat]);
     useEffect(() => {
+        setCurrentPage(0)
+        getApi()
+    }, [globalCurrentTage])
+    useEffect(() => {
         getApi()
     }, [currentPage]);
     // useEffect(()=>setCurrentPage(0),[globalCurrentCat])
-
+    useEffect(()=>{
+        getApi()
+    },[search])
 
 
 
@@ -80,15 +88,15 @@ const AllAritcalesGallery = () => {
                             prev
                         </button>
                         {
-                            (navigationInfo.current_page + 1) + ' / ' + (navigationInfo.total_pages )
+                            (navigationInfo.current_page + 1) + ' / ' + (navigationInfo.total_pages)
                         }
                         <button
                             className='mainBtn textWhite'
                             onClick={() => {
                                 setCurrentPage(pre => pre + 1)
                             }}
-                            style={currentPage == navigationInfo.total_pages-1 ? { opacity: 0.75 } : { opacity: 1 }}
-                            disabled={currentPage == navigationInfo.total_pages-1 ? true : false}
+                            style={currentPage == navigationInfo.total_pages - 1 ? { opacity: 0.75 } : { opacity: 1 }}
+                            disabled={currentPage == navigationInfo.total_pages - 1 ? true : false}
                         >
 
 

@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import LogBtn from '../../generalComponent/buttonsComponent/logButton'
 import { loginService } from '../../services/loginService'
 import { useNavigate } from "react-router";
+import { LoginContext } from '../../context/loginContext';
 
 const CreateAccounteForm = () => {
     let [passwordIsVisible, setPasswordIsVisible] = useState(true)
-    let [useInfo, setUserInfo] = useState({
+    let [userData, setUserData] = useState({
         fname: '',
         lname: '',
         userName: '',
@@ -16,88 +17,118 @@ const CreateAccounteForm = () => {
     let [isCreated, setIsCreated] = useState(false)
     let [isAcitve, setIsActive] = useState(false)
     let [isLoading, setIsLoading] = useState(false)
+    let [token, setToken] = useState('')
+     let getToken = () => {
+            loginService.getToken()
+                .then((data) => {
+                    setToken(`${data}`)
+                    setGlobalToken(data)
+    
+                })
+                .catch((err) => {
+                    console.error(err)
+                })
+                .finally(() => { })
+            setUserData(JSON.parse(localStorage.getItem('userData')))
+    
+        }
+        useEffect(()=>{getToken()},[])
     let [password, setPassword] = useState({
         pass1: '',
         pass2: ''
     })
+    let [CreateError,setCreateError]=useState(null)
+    let { setUserInfo,setGlobalToken } = useContext(LoginContext)
     let submit = () => {
         setIsLoading(true)
         setIsActive(false)
         loginService.createAccounte({
-            fName: useInfo.fname,
-            userName: useInfo.userName,
-            LName: useInfo.lname,
-            Email: useInfo.email,
-            Mobile: useInfo.phone,
-            pass: useInfo.pass,
+            fName: userData.fname,
+            userName: userData.userName,
+            LName: userData.lname,
+            Email: userData.email,
+            Mobile: userData.phone,
+            pass: userData.pass,
         })
             .then((data) => {
-                setIsLoading(true)
+                // setIsLoading(true)
                 console.log(data)
+                // let userD = {
+                //     token: token,
+                //     logout_token: data.logout_token,
+                //     current_user: {
+                //         name: data.name[0].value,
+                //         uid: data.uid[0].value
+                //     },
+                // }
+                // userD = { ...userD, auth: `Basic ${btoa(`${userD.current_user.name}:${userD.pass}`)}` }
+                // localStorage.setItem('userData', JSON.stringify(userD))
+                setUserInfo(userData)
                 if (data.field_surname) {
                     setIsCreated(true)
                 }
                 // loginService.
             })
-            .catch((err) => console.log(err))
+            .catch((err) => setCreateError(err))
             .finally(() => setIsLoading(false))
     }
 
 
     useEffect(() => {
         if (password.pass1 == password.pass2 || password.pass1 != '')
-            setUserInfo({
-                ...useInfo,
+            setUserData({
+                ...userData,
                 pass: password.pass1
             })
         console.log(password)
     }, [])
     useEffect(() => {
-        if (useInfo.fname != ''
-            && useInfo.lname != ''
-            && useInfo.userName != ''
-            && useInfo.email != ''
-            && useInfo.phone != ''
-            && useInfo.pass != ''
+        if (userData.fname != ''
+            && userData.lname != ''
+            && userData.userName != ''
+            && userData.email != ''
+            && userData.phone != ''
+            && userData.pass != ''
         ) {
             setIsActive(true)
-            console.log(setIsActive)
+            // console.log(setIsActive)
         }
-    }, [useInfo])
+    }, [userData])
     let navigate = useNavigate();
+
     useEffect(() => {
 
         if (isCreated) {
-            navigate("/");
+            navigate("/login");
         }
     }, [isCreated])
 
 
 
-    const handleImage = (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
+    // const handleImage = (e) => {
+    //     const file = e.target.files[0];
+    //     if (!file) return;
 
-        const reader = new FileReader();
+    //     const reader = new FileReader();
 
-        reader.onloadend = () => {
-            // base64 string result
-            const base64String = reader.result;
+    //     reader.onloadend = () => {
+    //         // base64 string result
+    //         const base64String = reader.result;
 
-            // save to userInfo
-            setUserInfo({
-                ...useInfo,
-                image: base64String
-            });
+    //         // save to userData
+    //         setUserData({
+    //             ...userData,
+    //             image: base64String
+    //         });
 
-            console.log("Base64 image:", base64String);
-        };
+    //         console.log("Base64 image:", base64String);
+    //     };
 
-        reader.readAsDataURL(file); // convert to base64
-    };
+    //     reader.readAsDataURL(file); // convert to base64
+    // };
 
-    if(localStorage.getItem('userData'))
-        navigate('/')
+    // if (localStorage.getItem('userData'))
+    //     navigate('/')
 
     return (
         <form action=""
@@ -115,8 +146,8 @@ const CreateAccounteForm = () => {
                             type="text"
                             placeholder='first name'
                             onInput={(e) => {
-                                setUserInfo({
-                                    ...useInfo,
+                                setUserData({
+                                    ...userData,
                                     fname: e.target.value
                                 })
                             }}
@@ -125,8 +156,8 @@ const CreateAccounteForm = () => {
                             type="text"
                             placeholder='last name'
                             onInput={(e) => {
-                                setUserInfo({
-                                    ...useInfo,
+                                setUserData({
+                                    ...userData,
                                     lname: e.target.value
                                 })
                             }}
@@ -139,8 +170,8 @@ const CreateAccounteForm = () => {
                         type="number"
                         placeholder='ex: 963 000 0000'
                         onInput={(e) => {
-                            setUserInfo({
-                                ...useInfo,
+                            setUserData({
+                                ...userData,
                                 phone: e.target.value
                             })
                         }}
@@ -152,8 +183,8 @@ const CreateAccounteForm = () => {
                         type="text"
                         placeholder='username'
                         onInput={(e) => {
-                            setUserInfo({
-                                ...useInfo,
+                            setUserData({
+                                ...userData,
                                 userName: e.target.value
                             })
                         }}
@@ -165,14 +196,14 @@ const CreateAccounteForm = () => {
                         type="email"
                         placeholder='username or email address..'
                         onInput={(e) => {
-                            setUserInfo({
-                                ...useInfo,
+                            setUserData({
+                                ...userData,
                                 email: e.target.value
                             })
                         }}
                     />
                 </label>
-                <label htmlFor="image" className='w-100 position-relative'>
+                {/* <label htmlFor="image" className='w-100 position-relative'>
                     <input
                         type="file"
                         accept="image/*"
@@ -197,7 +228,7 @@ const CreateAccounteForm = () => {
                             </div>
                         </div>
                     </div>
-                </label>
+                </label> */}
                 <label htmlFor="password">
                     <p>Password</p>
                     <div className="d-flex gap-2">
@@ -212,13 +243,13 @@ const CreateAccounteForm = () => {
                                         pass1: e.target.value
                                     })
                                     if (e.target.value == password.pass2) {
-                                        setUserInfo({
-                                            ...useInfo,
+                                        setUserData({
+                                            ...userData,
                                             pass: e.target.value
                                         })
                                     } else {
-                                        setUserInfo({
-                                            ...useInfo,
+                                        setUserData({
+                                            ...userData,
                                             pass: ''
                                         })
                                     }
@@ -252,13 +283,13 @@ const CreateAccounteForm = () => {
                                         pass2: e.target.value
                                     })
                                     if (e.target.value == password.pass1) {
-                                        setUserInfo({
-                                            ...useInfo,
+                                        setUserData({
+                                            ...userData,
                                             pass: e.target.value
                                         })
                                     } else {
-                                        setUserInfo({
-                                            ...useInfo,
+                                        setUserData({
+                                            ...userData,
                                             pass: ''
                                         })
                                     }
@@ -297,6 +328,13 @@ const CreateAccounteForm = () => {
                     </label>
                     <LogBtn text={'Create account'} arrow={1} onClick={submit} disabled={!isAcitve} isLoading={isLoading} />
                 </div>
+                {
+                    CreateError?
+                    <p className='textRed'>
+                        {CreateError.message}
+                    </p>
+                    :''
+                }
 
             </div>
         </form>

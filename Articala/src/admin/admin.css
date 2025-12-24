@@ -1,0 +1,39 @@
+.adminTab{
+    width: 100%;
+    height: 100%;
+}
+.listAdminBox{
+    position: sticky;
+    /* display: flex;
+    height: fit-content; */
+    inset-block-start: 140px;
+
+}
+.usersCard{
+    border-bottom: solid 1px rgba(128, 128, 128, 0.264);
+    padding: 12px 0;
+}
+.listAdminBoxCol{
+    min-height: 100%;
+}
+.usersCard img{
+    max-width: 70px;
+    max-height: 70px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+  
+}
+.usersCard button{
+    border: solid 1px var(--color-danger-main);
+    border-radius: 12px;
+    padding: 6px 12px;
+}
+.borderColorRed{
+    border-color: var(--color-danger-main) var(--color-danger-main) var(--color-danger-main) transparent;
+}
+.activeAdmin{
+    color: var(  --color-main);
+    border: solid 1px var(--color-main);
+    border-width: 0 0 2px 0;
+}

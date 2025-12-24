@@ -4,6 +4,7 @@ import Footer from '../generalComponent/Footer'
 import CreateForm from './addArticaleComponent/CreateForm'
 
 import { Container } from 'react-bootstrap'
+import CreateBlogForm from './addArticaleComponent/CreateBlogForm'
 
 const CreateArticale = () => {
     return (
@@ -13,7 +14,7 @@ const CreateArticale = () => {
             </header>
             <main>
                 <Container>
-
+                    {/* <CreateBlogForm/> */}
                     <CreateForm />
                 </Container>
             </main>

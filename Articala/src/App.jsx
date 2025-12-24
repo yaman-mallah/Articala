@@ -18,6 +18,9 @@ import ExplorePage from './allArticales/ExplorePage';
 import Articale from './allArticales/articalePerPage/Articale';
 import CreateArticale from './addArticale/CreateArticale';
 import MyArticalesPage from './myArticales/MyArticales';
+import MyArticalesEdit from './myArticales/MyArticalesedit';
+import AdminPage from './admin/AdminPage';
+// import AdminLogin from './admin/AdminLogIn';
 
 
 
@@ -39,8 +42,14 @@ function App() {
           <Route path='explore' element={<ExplorePage />} />
           <Route path='create-new-articale' element={<CreateArticale />} />
           <Route path='my-articales' element={<MyArticalesPage />} />
+         
+         
+          <Route path='admin' element={<AdminPage />} />
+          {/* <Route path='admin-login' element={<AdminLogin />} /> */}
 
+         
           <Route path='explore/:id' element={<Articale />} />
+          <Route path='my-articales/:id' element={<MyArticalesEdit />} />
 
           <Route path='*' element={<Page404 />} />
 

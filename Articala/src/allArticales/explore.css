@@ -8,7 +8,17 @@
   border-radius: 50%;
   border: solid 1px var(--color-black);
 }
+.filterCheckBox {
+  width: 15px;
+  height: 15px;
+  aspect-ratio: 1/1;
+  border-radius: 20%;
+  border: solid 1px var(--color-black);
+}
 .activeRadio.filterRadio {
+  background-color: var(--color-main);
+}
+.activeRadio.filterCheckBox {
   background-color: var(--color-main);
 }
 .exploreCard {
@@ -24,8 +34,11 @@
   min-height: 300px;
 }
 .exploreCard img {
-  height: 60%;
+  min-height: 140px;
+  height: 140px;
+  width: 100%;
   object-fit: cover;
+  border-radius: 12px;
 }
 .exploreCardBottom {
   padding: var(--space-sm);
@@ -56,16 +69,44 @@
   position: sticky;
   height: fit-content;
   top: 120px;
+
 }
 .articaleHero img {
   width: 100%;
   height: 100%;
+ 
   object-fit: cover;
 }
-.articaleProfileImg{
-    border-radius: 50%;
-    
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
+.articaleProfileImg {
+  border-radius: 12px;
+   max-height: 220px;
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+.dropdownBoxExploreCard {
+  position: absolute;
+  inset-block-start: 10px;
+  inset-inline-end: 10px;
+  z-index: 30;
+}
+.deletButton {
+  color: var(--color-danger-main);
+  border-color: var(--color-danger-main);
+  border: solid 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-md);
+  padding: 10px 20px;
+}
+.articaleMainImg{
+  max-width: 300px;
+}
+.articaleImg{
+  /* width: 200px; */
+  height: 350px;
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
 }

@@ -7,6 +7,9 @@ import { useParams } from 'react-router'
 import { Col, Container, Row } from 'react-bootstrap'
 import { SwiperSlide, Swiper } from 'swiper/react'
 
+
+import { Autoplay } from 'swiper/modules'
+
 const Articale = () => {
     let { id } = useParams()
     let [isLoading, setIsLoading] = useState(true)
@@ -18,10 +21,11 @@ const Articale = () => {
                 setArticaleInfo(data)
                 console.log(data)
             })
-        .finally(() =>setIsLoading(false))
+            .finally(() => setIsLoading(false))
     }, [])
-    
 
+    const [lightboxOpen, setLightboxOpen] = useState(false)
+    const [activeIndex, setActiveIndex] = useState(0)
     return (
         <>
             <header>
@@ -37,10 +41,11 @@ const Articale = () => {
                     <main>
                         <Container>
                             <Row>
-                                <Col lg={1} xs={2}>
-                                    <div className="position-realtive h-100">
+                                <Col lg={4} >
+                                    <div className="position-realtive h-100 pt-4">
 
-                                        <div className="articaleHeroImgBox"
+                                        <div
+                                            className="articaleHeroImgBox"
                                         >
                                             {
                                                 articaleInfo?.field_image.map((e, index) => (
@@ -56,8 +61,9 @@ const Articale = () => {
                                     </div>
                                 </Col>
                                 <Col>
-
-                                    <ArticaleDisplay info={articaleInfo} />
+                                    <div className="pt-4">
+                                        <ArticaleDisplay info={articaleInfo} />
+                                    </div>
                                 </Col>
 
                             </Row>
@@ -76,6 +82,13 @@ const Articale = () => {
                                             slidesPerView: 3
                                         },
                                     }}
+                                    autoplay={{
+                                        delay: 2500,
+                                        disableOnInteraction: false,
+                                        pauseOnMouseEnter: true,
+                                    }}
+                                    loop={true}
+                                    pauseOnMouseEnter:true
                                 >
                                     {
                                         articaleInfo?.field_gallery.map((e, index) => (
@@ -83,11 +96,41 @@ const Articale = () => {
                                             <SwiperSlide
                                                 key={index}
                                             >
-                                                <img src={e.url} alt={e.alt} />
+                                                <img
+                                                    src={e.url}
+                                                    alt={e.alt}
+                                                    className='articaleImg'
+                                                    onClick={() => {
+                                                        setActiveIndex(index)
+                                                        setLightboxOpen(true)
+                                                    }}
+                                                />
                                             </SwiperSlide>
                                         ))
                                     }
                                 </Swiper>
+                                {lightboxOpen && (
+                                    <div className="lightboxOverlay">
+                                        <button className="lightboxClose" onClick={() => setLightboxOpen(false)}>
+                                            ✕
+                                        </button>
+
+                                        <Swiper
+                                            initialSlide={activeIndex}
+                                            slidesPerView={1}
+                                            loop
+                                            navigation
+                                            keyboard={{ enabled: true }}
+                                            className="lightboxSwiper"
+                                        >
+                                            {articaleInfo?.field_gallery.map((img, i) => (
+                                                <SwiperSlide key={i}>
+                                                    <img src={img.url} className="lightboxImg" />
+                                                </SwiperSlide>
+                                            ))}
+                                        </Swiper>
+                                    </div>
+                                )}
                             </div>
                         </Container>
                     </main>

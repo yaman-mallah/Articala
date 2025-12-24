@@ -35,3 +35,7 @@
     max-width: 100px;
 
 }
+.verticalNavProfile button{
+    display: flex;
+    width: 100%;
+}

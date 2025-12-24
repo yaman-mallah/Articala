@@ -9,6 +9,7 @@
 
   --color-transparent: #363b4766;
   --color-funcation-main: #7e54e0;
+  --color-danger-main: #cd3030;
   --color-fundation: #f3effe;
   --color-secondary: #fef3c7;
   --color-secondary-Dark: #e7ddb5;
@@ -550,4 +551,39 @@ nav {
 main{
   min-height: 70vh;
   position: relative;
+}
+.checkingAlertBox{
+  position: fixed;
+  z-index: 200;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: color-mix(in srgb, var(--color-gray700) 60%, var(--color-gray700) 0%) ;
+}
+.checkingAlert{
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  background-color: var(--color-white);
+  border-radius: var(--radius-md);
+
+}
+
+label{
+  cursor: pointer;
+}
+.slidingButton{
+  overflow: hidden;
+}
+.buttonSlide{
+  position: absolute;
+  inset-inline-end: 25px;
+  inset-block-start: 13px;
+  transition: all 0.5s ease-in-out;
+}
+.buttonSlide.on{
+  inset-block-start: -37px;
+ 
 }
