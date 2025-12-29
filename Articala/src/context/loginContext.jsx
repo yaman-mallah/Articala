@@ -3,23 +3,35 @@ export const LoginContext = createContext(null)
 
 export const LoginProvider = ({ children }) => {
     const [userInfo, setUserInfo] = useState(null)
-    const [isLogedIn, setIsLoged] = useState(false)
+    const [isLogedIn, setIsLoged] = useState(null)
     let [imgLink, setImgLink] = useState(null)
     let [articlesInfo, setArticlesInfo] = useState(null)
     let [globalToken, setGlobalToken] = useState(null)
     useEffect(() => {
-        let data = localStorage.getItem('userData')
-        let profileImg = localStorage.getItem('profileImg')
-        let artIfno = localStorage.getItem('artInfo')
-        if (data) {
-            setUserInfo(JSON.parse(data))
-            setIsLoged(true)
+    const data = localStorage.getItem('userData')
+    const profileImg = localStorage.getItem('profileImg')
+    const artInfo = localStorage.getItem('artInfo')
+
+    if (data) {
+        setUserInfo(JSON.parse(data))
+        setIsLoged(true)
+
+        if (profileImg) {
             setImgLink(JSON.parse(profileImg))
-            setArticlesInfo(JSON.parse(artIfno))
+        } else {
+            setImgLink(null)
         }
-        else
-            setIsLoged(false)
-    }, [])
+
+        if (artInfo) {
+            setArticlesInfo(JSON.parse(artInfo))
+        } else {
+            setArticlesInfo(null)
+        }
+
+    } else {
+        setIsLoged(false)
+    }
+}, [])
     useEffect(() => {
         if (imgLink)
             localStorage.setItem('profileImg', JSON.stringify(imgLink));
@@ -33,8 +45,8 @@ export const LoginProvider = ({ children }) => {
         }
     }, [globalToken])
     useEffect(() => {
-        console.log(imgLink)
-    }, [imgLink])
+        console.log(isLogedIn)
+    }, [isLogedIn])
     return (
         <LoginContext.Provider value={{ setUserInfo, setIsLoged, isLogedIn, userInfo, setImgLink, imgLink, setGlobalToken, globalToken }}>
             {children}

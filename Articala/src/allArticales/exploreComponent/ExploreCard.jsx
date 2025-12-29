@@ -33,7 +33,7 @@ const ExploreCard = ({ info, isMyArticale }) => {
         let userData = JSON.parse(localStorage.getItem('userData'))
         setUserInfo({
             ...userInfo,
-            auth:userData.auth,
+            auth:userData?.auth,
             token: curToken,
         })
     }, [])
