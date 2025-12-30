@@ -9,7 +9,7 @@ import './admin.css'
 const AdminPage = () => {
 
     let [search, setSearch] = useState()
-    useEffect(()=>console.log(search),[search])
+    // useEffect(()=>console.log(search),[search])
     return (
         <>
             <header>

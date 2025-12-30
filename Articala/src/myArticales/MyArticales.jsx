@@ -13,12 +13,12 @@ const MyArticalesPage = () => {
 
     useEffect(() => {
         let userData = JSON.parse(localStorage.getItem('userData'))
-        console.log(userData)
+        // console.log(userData)
         if (userData)
             blogServices.getMyArticales(userData.auth)
                 .then((data) => {
                     setArticaleCardInfo(data.rows)
-                    console.log(data)
+                    // console.log(data)
                 })
                 .catch((err) => console.error(err))
                 .finally(() => setIsLoading(false))

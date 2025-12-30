@@ -20,11 +20,27 @@ import CreateArticale from './addArticale/CreateArticale';
 import MyArticalesPage from './myArticales/MyArticales';
 import MyArticalesEdit from './myArticales/MyArticalesedit';
 import AdminPage from './admin/AdminPage';
+import { useEffect } from 'react';
+import AOS from 'aos';
 // import AdminLogin from './admin/AdminLogIn';
 
-
+import 'aos/dist/aos.css';
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      mirror: false,
+      duration: 4000,
+      once: false,
+      offset: 10,
+      easing: "ease-out-cubic",
+    });
+    AOS.refresh();
+  }, []);
+  setTimeout(() => {
+    AOS.refresh();
+  }, 500);
+
 
   return (
     <>
@@ -42,12 +58,12 @@ function App() {
           <Route path='explore' element={<ExplorePage />} />
           <Route path='create-new-articale' element={<CreateArticale />} />
           <Route path='my-articales' element={<MyArticalesPage />} />
-         
-         
+
+
           <Route path='admin' element={<AdminPage />} />
           {/* <Route path='admin-login' element={<AdminLogin />} /> */}
 
-         
+
           <Route path='explore/:id' element={<Articale />} />
           <Route path='my-articales/:id' element={<MyArticalesEdit />} />
 

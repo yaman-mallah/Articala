@@ -36,7 +36,7 @@ const CreateForm = () => {
     useEffect(() => {
         blogServices.getTags()
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 setTags(data)
             })
             .catch(err => console.error(err))
@@ -110,12 +110,12 @@ const CreateForm = () => {
             gallery: true
         })
         const selectedFiles = Array.from(e.target.files)
-        console.log(selectedFiles)
+        // console.log(selectedFiles)
         getToken()
         selectedFiles.map((file, index) => {
             CRUDServices.uploadArticaleGallery(token, file, userData.auth)
                 .then(data => {
-                    console.log(data)
+                    // console.log(data)
                     setArticaleInfo(prev => ({
                         ...prev,
                         galleryimg: [
@@ -142,11 +142,11 @@ const CreateForm = () => {
         })
 
     }
-    useEffect(() => {
+    // useEffect(() => {
 
-        console.log(articaleInfo)
-        console.log(galleryIds)
-    }, [articaleInfo])
+    //     console.log(articaleInfo)
+    //     console.log(galleryIds)
+    // }, [articaleInfo])
 
 
 
@@ -163,10 +163,10 @@ const CreateForm = () => {
 
         setIsReady(Boolean(ready))
     }, [articaleInfo])
-    useEffect(() => {
-        console.log(isReady)
+    // useEffect(() => {
+    //     console.log(isReady)
 
-    }, [isReady])
+    // }, [isReady])
 
 
 
@@ -184,9 +184,9 @@ const CreateForm = () => {
             })
     }
 
-    useEffect(() => {
-        console.log(articaleInfo)
-    }, [articaleInfo])
+    // useEffect(() => {
+    //     console.log(articaleInfo)
+    // }, [articaleInfo])
 
     return (
         <>
@@ -291,7 +291,7 @@ const CreateForm = () => {
 
                     {
                         articaleInfo?.galleryimg?.map((img, index) => {
-                            console.log(img.url)
+                            {/* console.log(img.url) */}
 
                             return (
                                 <div key={index} className="galleryImgBox position-relative" key={img.id}>

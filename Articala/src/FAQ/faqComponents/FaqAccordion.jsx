@@ -7,7 +7,7 @@ const FaqAccordion = ({ faqData,catID }) => {
    
     
     useEffect(()=>{
-        console.log('faq')
+        // console.log('faq')
              setRenderedData(()=>{
             let cats=[];
             faqData.forEach((e)=>{

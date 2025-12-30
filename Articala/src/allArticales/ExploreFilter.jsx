@@ -45,9 +45,9 @@ const ExploreFilter = () => {
     let [currentCat, setCurrentCat] = useState(null)
     let [currentTag, setCurrentTag] = useState([])
 
-    useEffect(() => {
-        console.log(currentCat)
-    }, [currentCat])
+    // useEffect(() => {
+    //     console.log(currentCat)
+    // }, [currentCat])
 
     if (isLoading.cat && isLoading.tag) {
         return (
@@ -60,7 +60,7 @@ const ExploreFilter = () => {
     return (
         <>
             <div className="d-flex flex-column pt-5 gap-4">
-                <h2>
+                <h2 className='DisplayMid'>
                     filter
                 </h2>
                 <div className="d-flex flex-column gap-3">
@@ -79,7 +79,7 @@ const ExploreFilter = () => {
                                     style={{ position: 'absolute', opacity: 0 }}
                                     onChange={() => {
                                         setCurrentCat(e.id)
-                                        console.log('changed')
+                                        // console.log('changed')
                                         setGlobalCurrentCat(e.id)
                                     }}
                                     name="category"
@@ -107,7 +107,7 @@ const ExploreFilter = () => {
                 </div>
             </div>
             <div className="d-flex flex-column py-5 gap-4">
-                <h2>
+                <h2 className='DisplayMid'>
                     Tags
                 </h2>
                 <div className="d-flex flex-column gap-3">

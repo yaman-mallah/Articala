@@ -37,6 +37,9 @@ const NavBar = () => {
         localStorage.clear()
         window.location.reload();
     }
+    // useEffect(() => {
+    //     console.log(windowWidth, isLogedIn)
+    // }, [windowWidth])
 
 
 
@@ -55,18 +58,37 @@ const NavBar = () => {
                                 </div>
 
                             </div>
-                            <div className="d-flex gap-3  align-items-center z-3">
+                            <div className="d-flex  flex-row  align-items-center z-3">
 
-                                <div className={!isLogedIn ? "d-flex d-xxl-none" : 'd-flex d-lg-none'}>
+                                <div className='d-flex flex-row gap-3'>
                                     <button
-                                        // style={!isLogedIn||? {display:'none'}:{display:'block'}}
+                                        style={isLogedIn || windowWidth > 992 ? { display: 'none' } : { display: 'block' }}
                                         onClick={() => setIsSideBarOpen(e => e = !e)}
+                                        className={isLogedIn && windowWidth > 992 ?'d-none':
+                                        'p-0 m-0 d-flex align-items-center gap-2'
+                                        }
                                     >
-                                        <svg width="30" height="30" viewBox="0 0 91 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2 2H88.4391M2 28.0808H88.4391M2 55.6855H88.4391" stroke="white" strokeWidth="4" strokeLinecap="round" />
-                                        </svg>
+                                        {
+                                            isSideBarOpen ?
+                                                <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M0.999971 0.999998L16.0004 15.9996M31 30.9992L16.0004 15.9996M16.0004 15.9996L1.00084 30.9992L31 0.999992" stroke="white" stroke-width="2" stroke-linecap="round" />
+                                                </svg>
+
+                                                :
+                                                <svg
+                                                    // className={isLogedIn?'d-none d-md-flex':'d-flex'}
+                                                    width="30" height="30" viewBox="0 0 91 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M2 2H88.4391M2 28.0808H88.4391M2 55.6855H88.4391" stroke="white" strokeWidth="4" strokeLinecap="round" />
+                                                </svg>
+                                        }
 
                                     </button>
+                                    <div
+                                        className={imgLink ? "profileBox d-none d-md-block" : 'd-none'}
+
+                                    >
+                                        <img src={imgLink ? imgLink : ''} alt="profileImage" className='navProfileImage' />
+                                    </div>
                                 </div>
                                 {
                                     isLogedIn ?
@@ -81,13 +103,14 @@ const NavBar = () => {
                                                     <Dropdown.Item href='/profile'>profile</Dropdown.Item>
                                                     <Dropdown.Item href="/my-articales">my articales</Dropdown.Item>
                                                     <Dropdown.Item href="#/action-3"><button
-                                                            onClick={() => logOut()}
-                                                        >sing out
-                                                        </button></Dropdown.Item>
+                                                        onClick={() => logOut()}
+                                                    >sing out
+                                                    </button></Dropdown.Item>
                                                 </DropdownButton>
-                                                <div className="profileBox">
+                                                {/* <div className="profileBox">
                                                     <img src={imgLink ? imgLink : ''} alt="profileImage" className='navProfileImage' />
-                                                </div>
+                                                </div> */}
+
                                             </div>
                                         </>
 
@@ -112,7 +135,7 @@ const NavBar = () => {
                                 <div className="d-flex d-lg-none">
                                     <NavBarList isVertical={1} />
                                 </div>
-                                <div className="d-flex gap-3">
+                                <div className={isLogedIn ? "d-flex gap-3 d-none" : 'd-flex gap-3'}>
                                     <TransperentBtn text={'Sign In'} herf={'/login'} />
                                     <SecondaryBtn text={'Create Account'} herf={'/create-an-account'} />
                                 </div>

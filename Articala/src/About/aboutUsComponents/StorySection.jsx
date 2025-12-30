@@ -16,7 +16,7 @@ const StorySection = () => {
 
         const handleEnter = () => {
             setIsMouseOut(false);
-            console.log(isMouseOut)
+            // console.log(isMouseOut)
         };
         const handleLeave = () => {
             setIsMouseOut(true);

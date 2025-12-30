@@ -11,7 +11,7 @@ const ContactUsSection = () => {
                     <Col lg={5}>
 
                         <div className="d-flex flex-column">
-                            <h2>Contact Us</h2>
+                            <h2 className='DisplayMid'>Contact Us</h2>
                             <p>
                                 Enim tempor eget pharetra facilisis sed maecenas adipiscing. Eu leo molestie vel, ornare non id blandit netus.
                             </p>

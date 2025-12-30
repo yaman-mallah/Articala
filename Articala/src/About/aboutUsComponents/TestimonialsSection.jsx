@@ -20,9 +20,9 @@ const TestimonialsSection = () => {
         window.addEventListener('resize', getwidth)
         return () => window.removeEventListener('resize', getwidth)
     }, [])
-    useEffect(() => {
-        console.log("Container width:", containerWidth);
-    }, [containerWidth]);
+    // useEffect(() => {
+    //     console.log("Container width:", containerWidth);
+    // }, [containerWidth]);
 
 
 

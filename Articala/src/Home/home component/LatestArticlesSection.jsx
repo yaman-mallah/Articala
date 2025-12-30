@@ -34,6 +34,7 @@ const LatestArticlesSection = () => {
             <div className="latestArticlesBox position-relative">
                 <div className="latestTitleBox"
                     style={{ paddingInlineStart: ((windowWidth - containerWidth) / 2) + 30 }}
+                 
                 >
                     <h2 className='DisplayMid'>
                         Latest Articles
@@ -43,23 +44,23 @@ const LatestArticlesSection = () => {
                     <div className="w-100 ">
 
                         <Swiper
-                        spaceBetween={30}
-                        breakpoints={{
-                            0:{
-                                slidesPerView:1
-                            },
-                            992:{
-                                slidesPerView:2
-                            },
-                            1200:{
-                                slidesPerView:3
-                            }
-                        }}
+                            spaceBetween={30}
+                            breakpoints={{
+                                0: {
+                                    slidesPerView: 1
+                                },
+                                992: {
+                                    slidesPerView: 2
+                                },
+                                1200: {
+                                    slidesPerView: 3
+                                }
+                            }}
                         >
                             {
                                 LatestArticles.cards.map((e) => (
                                     <SwiperSlide>
-                                        <LatestArticlesCard title={e.courseTitle } cat={e.category} author={e.author} img={e.image}/>
+                                        <LatestArticlesCard title={e.courseTitle} cat={e.category} author={e.author} img={e.image} />
                                     </SwiperSlide>
                                 ))
                             }

@@ -65,7 +65,7 @@ const MyArticalesEdit = () => {
         blogServices.getSinglePage(id)
             .then(data => {
 
-                console.log(data)
+                // console.log(data)
                 setBlogImgs({
                     ...blogImgs,
                     mainImg: {
@@ -119,7 +119,7 @@ const MyArticalesEdit = () => {
         let file = e.target.files[0]
         CRUDServices.uploadArticaleImg(token, userData.auth, file)
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 setBlogDetails({
                     ...blogDetails,
                     mainImg: data.fid[0].value
@@ -148,10 +148,11 @@ const MyArticalesEdit = () => {
         })
         getToken()
         let files = Array.from(e.target.files)
+        
         files.map(file => {
             CRUDServices.uploadArticaleGallery(token, file, userData.auth)
                 .then((data) => {
-                    console.log(data)
+                    // console.log(data)
                     setBlogDetails({
                         ...blogDetails,
                         gallery: [
@@ -200,9 +201,9 @@ const MyArticalesEdit = () => {
     }
 
 
-    useEffect(() => {
-        console.log(blogDetails)
-    }, [blogDetails])
+    // useEffect(() => {
+    //     console.log(blogDetails)
+    // }, [blogDetails])
 
 
     return (

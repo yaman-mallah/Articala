@@ -157,7 +157,7 @@ const JoinSection = () => {
                         </div>
 
                         <div className="d-flex flex-column gap-3 ">
-                            <h2>Why you will join our team</h2>
+                            <h2 className='DisplayMid'>Why you will join our team</h2>
                             <p>
                                 Quisque leo leo, suscipit sed arcu sit amet, iaculis feugiat felis. Vestibulum non consectetur tortor. Morbi at orci vehicula, vehicula mi ut, vestibulum odio.
                             </p>

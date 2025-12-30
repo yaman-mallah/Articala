@@ -3,7 +3,7 @@ import Logo from '../../generalComponent/Logo'
 import { Container } from 'react-bootstrap'
 import TransperentBtn from '../../generalComponent/buttonsComponent/TransperentBtn'
 
-const LoginNavBar = () => {
+const LoginNavBar = ({ isLoggingIn }) => {
     return (
         <>
 
@@ -17,10 +17,18 @@ const LoginNavBar = () => {
 
 
                         <div className="d-flex gap-3  align-items-center  z-3">
-                            <a href="">
-                                Already have an account ?
+                            <a href=""
+                            className='d-md-flex d-none'
+                            >
+                                {
+                                    isLoggingIn ?
+                                        'create an account'
+                                        :
+                                        'Already have an account '
+
+                                }
                             </a>
-                            <TransperentBtn herf={'/login'} text={'Sing In'} />
+                            <TransperentBtn herf={isLoggingIn ? '/create-an-account' : '/login'} text={isLoggingIn ? 'sign up' : 'log in'} />
                         </div>
                     </div>
                 </Container>

@@ -17,7 +17,7 @@ const CreateBlogForm = () => {
 
     const auth = "Basic " + btoa(credential.user + ":" + credential.pass)
 
-    console.log("auth" + auth)
+    // console.log("auth" + auth)
     const [articleData, setArticleData] = useState(
 
         {
@@ -139,7 +139,7 @@ const CreateBlogForm = () => {
                 console.log(err.message)
             })
             .finally(() => {
-                console.log()
+           
             })
 
 
@@ -216,7 +216,7 @@ const CreateBlogForm = () => {
                 console.log(err.message)
             })
             .finally(() => {
-                console.log()
+        
             })
 
 
@@ -243,7 +243,7 @@ const CreateBlogForm = () => {
                 })
                     .then(res => res.json())
                     .then((data) => {
-                        console.log(data)
+                        // console.log(data)
                         setSuccess(true)
                         setNewArticle(
                             {
@@ -260,7 +260,7 @@ const CreateBlogForm = () => {
                 console.log(err.message)
             })
             .finally(() => {
-                console.log()
+                // console.log()
             })
 
     }

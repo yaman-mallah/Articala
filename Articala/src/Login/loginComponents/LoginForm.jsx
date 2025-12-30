@@ -133,7 +133,7 @@ const LoginForm = () => {
                         </button>
                     </div>
                 </label>
-                <div className="d-flex justify-content-between">
+                <div className="d-flex flex-column gap-3 flex-md-row justify-content-between">
 
                     <label htmlFor="Email" className='d-flex flex-row align-items-center gap-2 position-relative'>
                         <input className='checkboxInput' type="checkbox" placeholder='username or email address..' />

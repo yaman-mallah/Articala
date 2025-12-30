@@ -1,18 +1,29 @@
-@media screen and (max-width:1400px){
-    .DisplayMid{
-        font-size: 40px;
-   } 
+@media screen and (max-width: 1400px) {
+  .DisplayMid {
+    font-size: 40px;
+  }
 }
-@media screen and (max-width:1200px){
-   .DisplayMid{
-
-   } 
+@media screen and (max-width: 1200px) {
 }
-@media screen and (max-width:992px){
-
+@media screen and (max-width: 992px) {
 }
-@media screen and (max-width:786px){
-    .catCardBox{
-        padding: 0;
-    }
+@media screen and (max-width: 786px) {
+  .catCardBox {
+    padding: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .DisplayMid {
+    font-size: 30px;
+  }
+  .headlineLargmid {
+    font-size: 20px;
+  }
+  .HeadlineBold{
+    font-size: 22px;
+  }
+  :root {
+    --radius-md: 10px;
+    --radius-lg: 15px;
+  }
 }

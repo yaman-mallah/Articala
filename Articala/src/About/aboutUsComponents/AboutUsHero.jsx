@@ -25,24 +25,30 @@ const AboutUsHero = () => {
             <Swiper>
                 <SwiperSlide>
                     <Row>
-                        <Col lg={6} className='mb-5'>
+                        <Col lg={6} className='mb-5 order-2 order-lg-1 '>
 
                             <div
-                                className="d-flex flex-column h-100 justify-content-center "
-                                style={{ paddingInlineStart: paddingStatr ,paddingInlineEnd:'50px'}}
+                                className="d-flex flex-column h-100 justify-content-center pt-5 pt-md-auto"
+                                style={{ paddingInlineStart: paddingStatr + 20, paddingInlineEnd: '50px' }}
                             >
-                                <h2 className='display01 textGray100'>2011-2025</h2>
+                                <h2 className='display01 textGray100'
+                                    data-aos="fade-right"
+                                    data-aos-offset="200"
+                                    data-aos-duration="800"
+                                    data-aos-once="true"  // ← Force repeat on every appearance
+                                    data-aos-mirror="true"
+                                >2011-2025</h2>
                                 <h1>We share knowledge with the world</h1>
-                                
+
                                 <p className='textGray700 BodyXXXL400'>
                                     Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent fermentum quam mauris. Fusce tempor et augue a aliquet. Donec non ipsum non risus egestas tincidunt at vitae nulla.
                                 </p>
                             </div>
 
                         </Col>
-                        <Col>
+                        <Col className='order-1 order-lg-2 '>
                             {/* <img src={heroImg} alt=""  className=' h-100 aboutUsImg'/> */}
-                            <div className="d-flex h-100 align-items-end gradiantBox justify-content-center">
+                            <div className="d-flex h-100 align-items-end gradiantBox justify-content-center  ">
                                 <img className='d-none d-xl-flex' src={man} alt="" />
                                 <img src={woman} alt="" />
                             </div>

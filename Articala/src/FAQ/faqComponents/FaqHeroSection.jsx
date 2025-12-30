@@ -71,7 +71,7 @@ const FaqHeroSection = () => {
                         </Col>
                         <Col>
                             <div className="d-flex flex-column gap-3">
-                                <h2>FAQs</h2>
+                                <h2 className='DisplayMid'>FAQs</h2>
                                 <div>
                                     <FaqAccordion faqData={faqData} catID={show} />
                                 </div>

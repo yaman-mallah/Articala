@@ -15,14 +15,17 @@ const BranchesSection = () => {
             <div className="py-5">
 
                 <Container>
-                    <div className="d-flex justify-content-between w-100">
-                        <div className="d-flex gap-2 align-items-center">
-                            <ArrowLink text={'Brows All'} />
-                            <p className='titleLargMid'>
+                    <div className="d-flex flex-column flex-lg-row justify-content-between w-100">
+                        <div className="order-2 order-lg-1 d-flex flex-column flex-lg-row gap-2 align-items-lg-center align-items-start">
+                            <div className='order-2 order-lg-1'>
+
+                                <ArrowLink text={'Brows All'} />
+                            </div>
+                            <p className='titleLargMid order-1 order-lg-2'>
                                 We have more Branches to check out.
                             </p>
                         </div>
-                        <h2>
+                        <h2 className='order-1 order-lg-2'>
                             Browse Our Branches
                         </h2>
                     </div>

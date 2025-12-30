@@ -68,3 +68,8 @@ input {
   outline: none;
   box-shadow: none !important;
 }
+@media screen and (max-width: 992px) {
+  .loginBox {
+    background: #ffff;
+  }
+}

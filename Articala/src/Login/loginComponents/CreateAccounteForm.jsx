@@ -135,13 +135,13 @@ const CreateAccounteForm = () => {
             onSubmit={(e) => {
                 e.preventDefault()
             }}
-            className='mainForm w-100'
+            className='mainForm w-100 py-4'
         >
             <h1 className='heading02'>Create your account</h1>
             <div className="d-flex flex-column BodyMedium400 gap-3">
                 <label htmlFor="name">
                     <p>Full Name</p>
-                    <div className="d-flex gap-3">
+                    <div className="d-flex flex-column flex-lg-row gap-3">
                         <input
                             type="text"
                             placeholder='first name'
@@ -231,7 +231,7 @@ const CreateAccounteForm = () => {
                 </label> */}
                 <label htmlFor="password">
                     <p>Password</p>
-                    <div className="d-flex gap-2">
+                    <div className="d-flex flex-column flex-lg-row gap-2">
 
                         <div className="d-flex inputPasswordBox">
                             <input
@@ -259,7 +259,6 @@ const CreateAccounteForm = () => {
                             <button
                                 onClick={() => {
                                     setPasswordIsVisible(e => e = !e)
-                                    console.log(passwordIsVisible)
                                 }}
                             >{passwordIsVisible ?
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -298,7 +297,7 @@ const CreateAccounteForm = () => {
                             <button
                                 onClick={() => {
                                     setPasswordIsVisible(e => e = !e)
-                                    console.log(passwordIsVisible)
+                                    
                                 }}
                             >{passwordIsVisible ?
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -320,13 +319,13 @@ const CreateAccounteForm = () => {
                 </label>
                 <div className="line w-100">
                 </div>
-                <div className="d-flex justify-content-between">
+                <div className="d-flex flex-column flex-lg-row gap-3 justify-content-between">
                     <label htmlFor="" className='d-flex flex-row align-items-center gap-2 position-relative'>
                         <input className='checkboxInput' type="checkbox" placeholder='username or email address..' />
                         <span className="checkboxCustom"></span>
                         <p className='textGray500'>I Agree with all of your <a href="" className='textPurple'>Terms & Conditions </a></p>
                     </label>
-                    <LogBtn text={'Create account'} arrow={1} onClick={submit} disabled={!isAcitve} isLoading={isLoading} />
+                    <LogBtn text={'Submit'} arrow={1} onClick={submit} disabled={!isAcitve} isLoading={isLoading} />
                 </div>
                 {
                     CreateError?

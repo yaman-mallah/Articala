@@ -9,20 +9,42 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import topWriter from '../../JsonApi/topWriters.json'
 import TopWriterCard from './topWriterCard';
 
+import AOS from "aos";
 const TopWritersSection = () => {
     let [topWriterList, setTopWriterList] = useState([])
+
+    // useEffect(() => {
+    //     AOS.init({
+    //         duration: 1200,
+    //         once: false,
+    //         offset: 120,
+    //     });
+
+    // }, []);
+
+
+
     useEffect(() => {
         blogServices.getUserList()
             .then(data => setTopWriterList(data))
     }, [])
-    useEffect(() => console.log(topWriterList), [topWriterList])
+    // useEffect(() => console.log(topWriterList), [topWriterList])
+
     return (
         <>
-            <div className="py-5">
+            <div className="py-5"
+            >
 
                 <Container>
                     <div className="d-flex flex-column gap-3 w-100 py-5">
-                        <div className="d-flex flex-column flex-xl-row justify-content-between align-items-start">
+                        <div className="d-flex flex-column flex-xl-row justify-content-between align-items-md-center align-items-start"
+
+                            data-aos="fade-up"
+                            data-aos-offset="200"   // px before it appears
+                            data-aos-duration="1000"
+                            data-aos-once="false"
+                            data-aos-mirror="true"
+                        >
                             <h2 className='DisplayMid'>
                                 Check out our Top Writers
                             </h2>
@@ -37,8 +59,10 @@ const TopWritersSection = () => {
                         <div className="w-100 topWritersSwiper">
 
                             <Swiper
+
                                 slidesPerView={3}
                                 spaceBetween={30}
+
                                 breakpoints={{
                                     0: {
                                         slidesPerView: 1

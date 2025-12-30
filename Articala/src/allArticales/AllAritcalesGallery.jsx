@@ -3,8 +3,11 @@ import { blogServices } from '../services/blogServices'
 import { Col, Row } from 'react-bootstrap'
 import ExploreCard from './exploreComponent/ExploreCard'
 import { FilterContext } from '../context/filterContext'
+import { useNavigate } from 'react-router'
 
 const AllAritcalesGallery = (search) => {
+    let navigaite = useNavigate()
+
     let [articalesCard, setArticalesCard] = useState([])
     let { globalCurrentCat, globalCurrentTage } = useContext(FilterContext)
     let [isLoading, setIsLoading] = useState(true)
@@ -19,8 +22,8 @@ const AllAritcalesGallery = (search) => {
         blogServices.getAllArticales({
             category: globalCurrentCat,
             currentPage: currentPage,
-            currentTag:globalCurrentTage,
-            search:search
+            currentTag: globalCurrentTage,
+            search: search
         })
             .then(data => {
                 setArticalesCard(data.rows)
@@ -47,9 +50,9 @@ const AllAritcalesGallery = (search) => {
         getApi()
     }, [currentPage]);
     // useEffect(()=>setCurrentPage(0),[globalCurrentCat])
-    useEffect(()=>{
+    useEffect(() => {
         getApi()
-    },[search])
+    }, [search])
 
 
 

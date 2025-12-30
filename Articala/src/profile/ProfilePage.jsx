@@ -39,9 +39,9 @@ const ProfilePage = () => {
 
 
     }, [])
-    useEffect(() => {
-        console.log(userInfo)
-    }, [userInfo])
+    // useEffect(() => {
+    //     console.log(userInfo)
+    // }, [userInfo])
 
 
     let [isDisabled, setIsDisabled] = useState(true)
@@ -102,7 +102,7 @@ const ProfilePage = () => {
             .then(data => {
 
                 localStorage.setItem('profileInfo', JSON.stringify(data))
-                console.log(data)
+                // console.log(data)
                 info = JSON.parse(localStorage.getItem('profileInfo'))
                 setUserInfo(info)
                 setImgLink(data.user_picture[0].url)
@@ -130,9 +130,9 @@ const ProfilePage = () => {
         })
     }
     let [imguuid, setimgUuid] = useState()
-    useEffect(() => {
-        console.log(imguuid)
-    }, [imguuid])
+    // useEffect(() => {
+    //     console.log(imguuid)
+    // }, [imguuid])
 
     let [token, setToken] = useState()
     let [userData, setUserData] = useState()
@@ -158,7 +158,7 @@ const ProfilePage = () => {
         getToken()
         CRUDServices.deleteUser(token, userData.current_user.uid, userData.auth)
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 localStorage.clear();
                 navigate('/')
                 window.location.reload();

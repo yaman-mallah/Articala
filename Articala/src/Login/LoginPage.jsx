@@ -21,7 +21,7 @@ const LoginPage = () => {
         return (
             <>
                 <header>
-                    <LoginNavBar />
+                    <LoginNavBar isLoggingIn={true} />
                 </header>
                 <main>
 
@@ -36,7 +36,6 @@ const LoginPage = () => {
                                 </Col>
                                 <Col lg={6}>
                                     <div className="d-flex align-items-center h-100">
-
                                         <LoginForm />
                                     </div>
                                 </Col>

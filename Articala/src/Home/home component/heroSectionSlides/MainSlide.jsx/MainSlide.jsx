@@ -9,7 +9,7 @@ import heroSlide from '../../../../assets/home/Group 1000006183.png'
 import { LoginContext } from '../../../../context/loginContext'
 const MainSlide = () => {
     let { isLogedIn } = useContext(LoginContext)
-    console.log(isLogedIn)
+    // console.log(isLogedIn)
 
     return (
         <>

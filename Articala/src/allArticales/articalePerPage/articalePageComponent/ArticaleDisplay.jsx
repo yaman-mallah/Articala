@@ -24,7 +24,7 @@ const ArticaleDisplay = ({ info }) => {
     return (
         <div className="py-2 d-flex flex-column gap-3">
 
-            <h2>{info?.title?.[0]?.value}</h2>
+            <h2 className='DisplayMid'>{info?.title?.[0]?.value}</h2>
 
             <div
                 dangerouslySetInnerHTML={{ __html: info?.body?.[0]?.value }}
